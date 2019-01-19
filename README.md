@@ -6,7 +6,7 @@ Use [note-server](https://github.com/bungferdly/NoteApp-RN) as the backend.
 
 ```
 > git clone https://github.com/bungferdly/NoteApp-RN.git
-> cd NoteApp
+> cd NoteApp-RN
 > yarn
 > react-native run-ios
 ```
