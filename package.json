@@ -23,6 +23,14 @@
     "redux-devtools-extension": "^2.13.7"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transform": {
+      "\\.js$": "./jest.preprocessor.js"
+    },
+    "collectCoverage": true,
+    "globals": {
+      "window": {},
+      "GLOBAL": {}
+    }
   }
 }

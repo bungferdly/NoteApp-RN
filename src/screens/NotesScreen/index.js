@@ -11,15 +11,17 @@ const mapStateToProps = state => ({
   noteState: state.note
 });
 
+export const navigationOptions = ({ navigation }) => ({
+  title: 'Notes',
+  headerRight: (
+    <Text style={styles.barButtonText} testID="LOGOUT_BTN" onPress={navigation.getParam('logout')}>
+      Logout
+    </Text>
+  )
+});
+
 class NotesScreen extends React.PureComponent {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Notes',
-    headerRight: (
-      <Text style={styles.barButtonText} onPress={navigation.getParam('logout')}>
-        Logout
-      </Text>
-    )
-  });
+  static navigationOptions = navigationOptions;
 
   componentDidMount() {
     this.props.navigation.setParams({ logout: this._logout });
@@ -38,9 +40,7 @@ class NotesScreen extends React.PureComponent {
 
   _requestNext = () => {
     const { currentPage, canLoadNext } = this.props.noteState;
-    if (canLoadNext) {
-      apiRequest(getNextNotesApiAction({ page: currentPage + 1 }));
-    }
+    canLoadNext && apiRequest(getNextNotesApiAction({ page: currentPage + 1 }));
   };
 
   _renderItem = ({ item }) => (
@@ -52,12 +52,13 @@ class NotesScreen extends React.PureComponent {
   );
 
   render() {
-    const { isLoading, errorMessage, isRefreshing = false, isLoadingNext, data } = this.props.noteState;
+    const { isLoading, errorMessage, isRefreshing, isLoadingNext, data } = this.props.noteState;
     if (!data) {
       return <ActivityView isLoading={isLoading} errorMessage={errorMessage} onReload={this._reloadData} />;
     }
     return (
       <FlatList
+        testID="LIST"
         contentContainerStyle={styles.contentContainer}
         data={data}
         refreshing={isRefreshing}
