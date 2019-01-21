@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0940"
+   LastUpgradeVersion = "1000"
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "NO"
+      parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
@@ -14,37 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D2A28121D9B038B00D4039D"
-               BuildableName = "libReact.a"
-               BlueprintName = "React-tvOS"
-               ReferencedContainer = "container:../node_modules/react-native/React/React.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "NoteApp-tvOS.app"
-               BlueprintName = "NoteApp-tvOS"
-               ReferencedContainer = "container:NoteApp.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "NoteApp-tvOSTests.xctest"
-               BlueprintName = "NoteApp-tvOSTests"
+               BlueprintIdentifier = "4221853C21F584C000E7E2B1"
+               BuildableName = "NoteLocal.app"
+               BlueprintName = "NoteApp_Mock"
                ReferencedContainer = "container:NoteApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -56,23 +28,13 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "NoteApp-tvOSTests.xctest"
-               BlueprintName = "NoteApp-tvOSTests"
-               ReferencedContainer = "container:NoteApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "NoteApp-tvOS.app"
-            BlueprintName = "NoteApp-tvOS"
+            BlueprintIdentifier = "4221853C21F584C000E7E2B1"
+            BuildableName = "NoteLocal.app"
+            BlueprintName = "NoteApp_Mock"
             ReferencedContainer = "container:NoteApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -93,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "NoteApp-tvOS.app"
-            BlueprintName = "NoteApp-tvOS"
+            BlueprintIdentifier = "4221853C21F584C000E7E2B1"
+            BuildableName = "NoteLocal.app"
+            BlueprintName = "NoteApp_Mock"
             ReferencedContainer = "container:NoteApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -112,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "NoteApp-tvOS.app"
-            BlueprintName = "NoteApp-tvOS"
+            BlueprintIdentifier = "4221853C21F584C000E7E2B1"
+            BuildableName = "NoteLocal.app"
+            BlueprintName = "NoteApp_Mock"
             ReferencedContainer = "container:NoteApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -3,6 +3,8 @@ import { Keyboard } from 'react-native';
 import { store } from './ReduxService';
 import ActivityOverlay from '../components/ActivityOverlay';
 import { logoutAction } from '../actions/accountActions';
+import envUtils from '../utils/envUtils';
+import mockClient from '../apis/__mocks__/index';
 
 if (__DEV__) {
   //show request in debugger
@@ -12,7 +14,10 @@ if (__DEV__) {
 let cancelSource = axios.CancelToken.source();
 
 const client = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: envUtils.select({
+    prod: 'https://production.url.com/api',
+    dev: 'http://localhost:3000'
+  })
 });
 
 function getErrorMessage(err) {
@@ -62,12 +67,15 @@ export function apiRequest({
       isLoading: true,
       isRefreshing,
       isSuccess: false,
-      isRefreshing,
       ...otherParams
     });
   }
 
-  return client
+  return envUtils
+    .select({
+      mock: mockClient,
+      default: client
+    })
     .request({ ...api, cancelToken: cancelSource.token })
     .then(res => {
       const data = res.data;
