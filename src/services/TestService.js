@@ -33,7 +33,7 @@ jest.setMock('Alert', Alert);
 //mock environment
 const NativeModules = require.requireActual('react-native').NativeModules;
 NativeModules.AppConfig = {
-  env: 'mock'
+  env: 'dev'
 };
 
 //mock timer

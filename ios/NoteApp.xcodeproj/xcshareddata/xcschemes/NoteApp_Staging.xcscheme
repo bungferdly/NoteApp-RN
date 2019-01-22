@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4221853C21F584C000E7E2B1"
-               BuildableName = "NoteLocal.app"
-               BlueprintName = "NoteApp_Mock"
+               BuildableName = "NoteStg.app"
+               BlueprintName = "NoteApp_Staging"
                ReferencedContainer = "container:NoteApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4221853C21F584C000E7E2B1"
-            BuildableName = "NoteLocal.app"
-            BlueprintName = "NoteApp_Mock"
+            BuildableName = "NoteStg.app"
+            BlueprintName = "NoteApp_Staging"
             ReferencedContainer = "container:NoteApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4221853C21F584C000E7E2B1"
-            BuildableName = "NoteLocal.app"
-            BlueprintName = "NoteApp_Mock"
+            BuildableName = "NoteStg.app"
+            BlueprintName = "NoteApp_Staging"
             ReferencedContainer = "container:NoteApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4221853C21F584C000E7E2B1"
-            BuildableName = "NoteLocal.app"
-            BlueprintName = "NoteApp_Mock"
+            BuildableName = "NoteStg.app"
+            BlueprintName = "NoteApp_Staging"
             ReferencedContainer = "container:NoteApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

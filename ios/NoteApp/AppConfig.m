@@ -18,8 +18,8 @@ RCT_EXPORT_MODULE();
 
 - (NSDictionary *)constantsToExport {
   
-#ifdef MOCK
-  NSString *env = @"mock";
+#ifdef STAGING
+  NSString *env = @"staging";
 #endif
   
 #ifdef DEV

@@ -130,9 +130,9 @@ android {
             dimension "env"
             applicationIdSuffix ".dev"
         }
-        mock {
+        staging {
             dimension "env"
-            applicationIdSuffix ".mock"
+            applicationIdSuffix ".staging"
         }
     }
     // applicationVariants are e.g. debug, release

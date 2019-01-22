@@ -1,14 +1,18 @@
 import axios from 'axios';
-import { Keyboard } from 'react-native';
+import { Keyboard, Platform } from 'react-native';
 import { store } from './ReduxService';
 import ActivityOverlay from '../components/ActivityOverlay';
 import { logoutAction } from '../actions/accountActions';
 import envUtils from '../utils/envUtils';
-import mockClient from '../apis/__mocks__/index';
+
+let mockClient;
 
 if (__DEV__) {
   //show request in debugger
   GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;
+
+  //only mock in debug build, so when release the codes isn't transpiled
+  mockClient = require('../apis/__mocks__/index').default;
 }
 
 let cancelSource = axios.CancelToken.source();
@@ -16,7 +20,10 @@ let cancelSource = axios.CancelToken.source();
 const client = axios.create({
   baseURL: envUtils.select({
     prod: 'https://production.url.com/api',
-    dev: 'http://localhost:3000'
+    default: Platform.select({
+      ios: 'http://localhost:3000',
+      android: 'http://10.0.2.2:3000' //your pc ip address is 10.0.2.2 in android emulator
+    })
   })
 });
 
@@ -73,7 +80,7 @@ export function apiRequest({
 
   return envUtils
     .select({
-      mock: mockClient,
+      dev: mockClient || client,
       default: client
     })
     .request({ ...api, cancelToken: cancelSource.token })
