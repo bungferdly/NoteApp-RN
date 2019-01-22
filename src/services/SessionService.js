@@ -1,4 +1,3 @@
-import { store } from './ReduxService';
 import { cancelAllRequests } from './ApiService';
 import { navigation } from './NavigationService';
 import { accountActionTypes } from '../actions/accountActions';

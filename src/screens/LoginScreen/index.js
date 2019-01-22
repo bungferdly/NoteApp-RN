@@ -22,6 +22,7 @@ export default class LoginScreen extends React.PureComponent {
         <View>
           <Text style={styles.title}>Notes</Text>
           <TextInput
+            testID="USERNAME_INPUT"
             placeholder="username"
             style={styles.textInput}
             value={username}
@@ -29,13 +30,14 @@ export default class LoginScreen extends React.PureComponent {
             onChangeText={t => this.setState({ username: t })}
           />
           <TextInput
+            testID="PASSWORD_INPUT"
             placeholder="password"
             style={styles.textInput}
             value={password}
             secureTextEntry={true}
             onChangeText={t => this.setState({ password: t })}
           />
-          <TouchableOpacity style={styles.button} onPress={this._login}>
+          <TouchableOpacity testID="LOGIN_BTN" style={styles.button} onPress={this._login}>
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
         </View>
