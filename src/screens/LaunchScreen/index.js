@@ -1,4 +1,4 @@
-import { store } from '../../services/ReduxService';
+import { store } from '../../utils/storeUtils';
 
 export default function LaunchScreen(props) {
   const token = store.getState().account.accessToken;

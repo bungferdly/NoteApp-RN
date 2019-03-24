@@ -1,8 +1,8 @@
-import { cancelAllRequests } from './ApiService';
-import { navigation } from './NavigationService';
+import { cancelAllRequests } from '../utils/apiUtils';
+import { navigation } from '../utils/navigationUtils';
 import { accountActionTypes } from '../actions/accountActions';
 
-export const sessionMiddleware = store => next => action => {
+const sessionMiddleware = store => next => action => {
   const result = next(action);
 
   switch (action.type) {
@@ -19,3 +19,5 @@ export const sessionMiddleware = store => next => action => {
 
   return result;
 };
+
+export default sessionMiddleware;

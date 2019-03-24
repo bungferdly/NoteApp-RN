@@ -5,7 +5,7 @@ const initialState = {
   username: null
 };
 
-export function accountReducer(state = initialState, action) {
+export default function accountReducer(state = initialState, action) {
   switch (action.type) {
     case accountActionTypes.LOGIN_API:
       return {

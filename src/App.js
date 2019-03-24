@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import ActivityOverlay from './components/ActivityOverlay';
 import RootNavigator from './navigators/RootNavigator';
-import { store, createPersistor } from './services/ReduxService';
-import { setTopLevelNavigator } from './services/NavigationService';
+import { store, createPersistor } from './utils/storeUtils';
+import { setTopLevelNavigator } from './utils/navigationUtils';
 
 export default class App extends React.Component {
   render() {

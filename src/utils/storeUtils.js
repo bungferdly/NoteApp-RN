@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
-import { accountReducer } from '../reducers/accountReducer';
-import { noteReducer } from '../reducers/noteReducer';
-import { sessionMiddleware } from './SessionService';
+import accountReducer from '../reducers/accountReducer';
+import noteReducer from '../reducers/noteReducer';
+import sessionMiddleware from '../middlewares/sessionMiddleware';
 
 const persistConfig = {
   key: 'root',

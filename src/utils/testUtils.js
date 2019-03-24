@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import TestRenderer from 'react-test-renderer';
-import { setTopLevelNavigator } from './NavigationService';
+import { setTopLevelNavigator } from './navigationUtils';
 
 //mock activity overlay
 export const ActivityOverlay = {
@@ -49,5 +49,9 @@ afterEach(() => {
   Alert.alert.mockClear();
 });
 
-export const { store } = require('./ReduxService');
-export const renderer = component => TestRenderer.create(<Provider store={store}>{component}</Provider>);
+export const renderer = component => {
+  const { store } = require('./storeUtils');
+  const tree = TestRenderer.create(<Provider store={store}>{component}</Provider>);
+  const getProps = testID => tree.root.findByProps({ testID }).props;
+  return { getProps };
+};

@@ -1,9 +1,9 @@
 import React from 'react';
 import { KeyboardAvoidingView, TextInput, TouchableOpacity, View, Text } from 'react-native';
 import styles from './styles';
-import { apiRequest } from '../../services/ApiService';
+import { apiRequest } from '../../utils/apiUtils';
 import { loginApiAction } from '../../actions/accountActions';
-import { store } from '../../services/ReduxService';
+import { store } from '../../utils/storeUtils';
 
 export default class LoginScreen extends React.PureComponent {
   state = {

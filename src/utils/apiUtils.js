@@ -1,11 +1,23 @@
 import axios from 'axios';
 import { Keyboard, Platform } from 'react-native';
-import { store } from './ReduxService';
 import ActivityOverlay from '../components/ActivityOverlay';
 import { logoutAction } from '../actions/accountActions';
-import envUtils from '../utils/envUtils';
+import { store } from './storeUtils';
+import { selectEnv } from './envUtils';
 
-let mockClient;
+let cancelSource = axios.CancelToken.source();
+
+const client = axios.create({
+  baseURL: selectEnv({
+    prod: 'https://production.url.com/api',
+    default: Platform.select({
+      ios: 'http://localhost:3000',
+      android: 'http://10.0.2.2:3000' //your pc ip address is 10.0.2.2 in android emulator
+    })
+  })
+});
+
+let mockClient = client;
 
 if (__DEV__) {
   //show request in debugger
@@ -14,18 +26,6 @@ if (__DEV__) {
   //only mock in debug build, so when release the codes isn't transpiled
   mockClient = require('../apis/__mocks__/index').default;
 }
-
-let cancelSource = axios.CancelToken.source();
-
-const client = axios.create({
-  baseURL: envUtils.select({
-    prod: 'https://production.url.com/api',
-    default: Platform.select({
-      ios: 'http://localhost:3000',
-      android: 'http://10.0.2.2:3000' //your pc ip address is 10.0.2.2 in android emulator
-    })
-  })
-});
 
 function getErrorMessage(err) {
   let errMsg;
@@ -78,11 +78,10 @@ export function apiRequest({
     });
   }
 
-  return envUtils
-    .select({
-      dev: mockClient || client,
-      default: client
-    })
+  return selectEnv({
+    dev: mockClient,
+    default: client
+  })
     .request({ ...api, cancelToken: cancelSource.token })
     .then(res => {
       const data = res.data;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { apiRequest } from '../../services/ApiService';
+import { apiRequest } from '../../utils/apiUtils';
 import { getNotesApiAction, getNextNotesApiAction } from '../../actions/noteActions';
 import styles from './styles';
 import ActivityView from '../../components/ActivityView';

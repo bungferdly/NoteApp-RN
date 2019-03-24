@@ -11,7 +11,7 @@ const initialState = {
   currentPage: 1
 };
 
-export function noteReducer(state = initialState, action) {
+export default function noteReducer(state = initialState, action) {
   switch (action.type) {
     case noteActionTypes.GET_API:
       return {

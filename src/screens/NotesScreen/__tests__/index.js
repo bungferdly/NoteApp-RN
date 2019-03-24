@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderer, navigation } from '../../../services/TestService';
+import { renderer, navigation } from '../../../utils/testUtils';
 import NotesScreen, { navigationOptions } from '..';
 
 const tree = renderer(<NotesScreen navigation={navigation} />);
@@ -7,22 +7,22 @@ const headerRightTree = renderer(navigationOptions({ navigation }).headerRight);
 
 test('initial render', () => {
   jest.runAllTimers();
-  expect(tree.root.findByProps({ testID: 'LIST' }).props.data.length).toEqual(10);
+  expect(tree.getProps('LIST').data.length).toEqual(10);
 });
 
 test('scroll to bottom', () => {
-  tree.root.findByProps({ testID: 'LIST' }).props.onEndReached();
+  tree.getProps('LIST').onEndReached();
   jest.runAllTimers();
-  expect(tree.root.findByProps({ testID: 'LIST' }).props.data.length).toEqual(20);
+  expect(tree.getProps('LIST').data.length).toEqual(20);
 });
 
 test('refreshing', () => {
-  tree.root.findByProps({ testID: 'LIST' }).props.onRefresh();
+  tree.getProps('LIST').onRefresh();
   jest.runAllTimers();
-  expect(tree.root.findByProps({ testID: 'LIST' }).props.data.length).toEqual(10);
+  expect(tree.getProps('LIST').data.length).toEqual(10);
 });
 
 test('logout', () => {
-  headerRightTree.root.findByProps({ testID: 'LOGOUT_BTN' }).props.onPress();
+  headerRightTree.getProps('LOGOUT_BTN').onPress();
   expect(navigation.navigate).toBeCalledWith('Login');
 });
