@@ -3,7 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 import accountReducer from '../reducers/accountReducer';
 import noteReducer from '../reducers/noteReducer';
-import sessionMiddleware from '../middlewares/sessionMiddleware';
+import apiMiddleware from '../middlewares/apiMiddleware';
 
 const persistConfig = {
   key: 'root',
@@ -15,7 +15,7 @@ const reducers = combineReducers({
   note: noteReducer
 });
 
-const middlewares = applyMiddleware(sessionMiddleware);
+const middlewares = applyMiddleware(apiMiddleware);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

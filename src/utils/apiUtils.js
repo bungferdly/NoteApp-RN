@@ -50,7 +50,7 @@ export function cancelAllRequests() {
   cancelSource = axios.CancelToken.source();
 }
 
-export function apiRequest({
+export function request({
   type,
   api,
   isRefreshing = false,
@@ -70,7 +70,6 @@ export function apiRequest({
   if (type) {
     store.dispatch({
       type,
-      api,
       isLoading: true,
       isRefreshing,
       isSuccess: false,
@@ -88,7 +87,6 @@ export function apiRequest({
       if (type) {
         store.dispatch({
           type,
-          api,
           isLoading: false,
           isRefreshing: false,
           isSuccess: true,
@@ -129,7 +127,6 @@ export function apiRequest({
       if (type) {
         store.dispatch({
           type,
-          api,
           isLoading: false,
           isRefreshing: false,
           isSuccess: false,

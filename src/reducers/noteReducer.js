@@ -13,7 +13,7 @@ const initialState = {
 
 export default function noteReducer(state = initialState, action) {
   switch (action.type) {
-    case noteActionTypes.GET_API:
+    case noteActionTypes.GET:
       return {
         ...state,
         data: action.data || state.data,
@@ -23,7 +23,7 @@ export default function noteReducer(state = initialState, action) {
         currentPage: 1,
         canLoadNext: action.isSuccess && action.data.length >= action.limit
       };
-    case noteActionTypes.GETNEXT_API:
+    case noteActionTypes.GETNEXT:
       return {
         ...state,
         data: action.data ? [...state.data, ...action.data] : state.data,

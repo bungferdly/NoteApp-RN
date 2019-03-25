@@ -1,18 +1,19 @@
 import { loginApi } from '../apis/accountApis';
 
 export const accountActionTypes = {
-  LOGIN_API: 'account/LOGIN_API',
+  LOGIN: 'account/LOGIN',
   LOGOUT: 'account/LOGOUT'
 };
 
-export const loginApiAction = ({ username, password }) => ({
-  type: accountActionTypes.LOGIN_API,
+export const login = ({ username, password }) => ({
+  type: accountActionTypes.LOGIN,
   api: loginApi({ username, password }),
+  username,
   loadingMessage: 'Logging in...',
   successMessage: 'Logged in!',
   showError: true
 });
 
-export const logoutAction = () => ({
+export const logout = () => ({
   type: accountActionTypes.LOGOUT
 });

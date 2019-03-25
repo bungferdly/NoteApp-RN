@@ -1,18 +1,26 @@
 import React from 'react';
 import { KeyboardAvoidingView, TextInput, TouchableOpacity, View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { login } from '../../actions/accountActions';
 import styles from './styles';
-import { apiRequest } from '../../utils/apiUtils';
-import { loginApiAction } from '../../actions/accountActions';
-import { store } from '../../utils/storeUtils';
 
-export default class LoginScreen extends React.PureComponent {
-  state = {
-    username: store.getState().account.username || '',
-    password: ''
-  };
+const mapStateToProps = state => ({
+  initialUsername: state.account.username
+});
+
+class LoginScreen extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: props.initialUsername || '',
+      password: ''
+    };
+  }
 
   _login = () => {
-    apiRequest(loginApiAction(this.state));
+    this.props.login(this.state).then(() => {
+      this.props.navigation.navigate('App');
+    });
   };
 
   render() {
@@ -45,3 +53,8 @@ export default class LoginScreen extends React.PureComponent {
     );
   }
 }
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(LoginScreen);

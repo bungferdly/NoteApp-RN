@@ -7,10 +7,10 @@ const initialState = {
 
 export default function accountReducer(state = initialState, action) {
   switch (action.type) {
-    case accountActionTypes.LOGIN_API:
+    case accountActionTypes.LOGIN:
       return {
         ...state,
-        username: action.api.auth.username,
+        username: action.username,
         accessToken: action.isSuccess && action.data.accessToken
       };
     case accountActionTypes.LOGOUT:

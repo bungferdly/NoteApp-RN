@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, FlatList, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { apiRequest } from '../../utils/apiUtils';
-import { getNotesApiAction, getNextNotesApiAction } from '../../actions/noteActions';
+import { getNotes, getNextNotes } from '../../actions/noteActions';
 import styles from './styles';
 import ActivityView from '../../components/ActivityView';
-import { logoutAction } from '../../actions/accountActions';
+import { logout } from '../../actions/accountActions';
 
 const mapStateToProps = state => ({
   noteState: state.note
@@ -25,22 +24,23 @@ class NotesScreen extends React.PureComponent {
 
   componentDidMount() {
     this.props.navigation.setParams({ logout: this._logout });
-    apiRequest(getNotesApiAction());
+    this.props.getNotes();
   }
 
   _logout = () => {
-    this.props.logoutAction();
+    this.props.logout();
+    this.props.navigation.navigate('Login');
   };
 
   _keyExtractor = item => item.id.toString();
 
   _reloadData = () => {
-    apiRequest(getNotesApiAction({ isRefreshing: true }));
+    this.props.getNotes({ isRefreshing: true });
   };
 
   _requestNext = () => {
     const { currentPage, canLoadNext } = this.props.noteState;
-    canLoadNext && apiRequest(getNextNotesApiAction({ page: currentPage + 1 }));
+    canLoadNext && this.props.getNextNotes({ page: currentPage + 1 });
   };
 
   _renderItem = ({ item }) => (
@@ -75,5 +75,5 @@ class NotesScreen extends React.PureComponent {
 
 export default connect(
   mapStateToProps,
-  { logoutAction }
+  { logout, getNotes, getNextNotes }
 )(NotesScreen);
