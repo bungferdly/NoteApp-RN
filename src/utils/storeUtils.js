@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import accountReducer from '../reducers/accountReducer';
 import noteReducer from '../reducers/noteReducer';
 import apiMiddleware from '../middlewares/apiMiddleware';

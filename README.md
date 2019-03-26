@@ -1,5 +1,6 @@
 # NoteApp-RN
-A sample app with RESTful API for training and development purpose. 
+
+A sample app with RESTful API for training and development purpose.
 Use [NoteServer](https://github.com/bungferdly/NoteServer) as the backend.
 
 ### Getting Started
@@ -11,17 +12,19 @@ Use [NoteServer](https://github.com/bungferdly/NoteServer) as the backend.
 ```
 
 ##### Run iOS
+
 ```
-> react-native run-ios --scheme="NoteApp_Dev | NoteApp_Staging | NoteApp"
+> react-native run-ios --scheme="NoteApp | NoteApp_Staging | NoteApp_Production"
 ```
 
 ##### Run Android
+
 ```
 > react-native run-android --variant="devDebug | stagingDebug | prodDebug"
 ```
 
-
 ### Features
+
 - Organized files & folders
 - Do RESTful API with a single action
 - Can do both promise & redux when calling API (without redux-saga or redux-thunk)

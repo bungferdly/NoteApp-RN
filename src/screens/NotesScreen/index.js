@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, FlatList, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { getNotes, getNextNotes } from '../../actions/noteActions';
@@ -10,7 +10,66 @@ const mapStateToProps = state => ({
   noteState: state.note
 });
 
-export const navigationOptions = ({ navigation }) => ({
+function NotesScreen(props) {
+  const { noteState, navigation } = props;
+  const { isLoading, errorMessage, isRefreshing, isLoadingNext, data, currentPage, canLoadNext } = noteState;
+
+  useEffect(() => {
+    navigation.setParams({ logout: doLogout });
+    props.getNotes();
+  }, []);
+
+  function doLogout() {
+    props.logout();
+    navigation.navigate('Login');
+  }
+
+  function keyExtractor(item) {
+    return item.id.toString();
+  }
+
+  function reloadData() {
+    props.getNotes({ isRefreshing: true });
+  }
+
+  function requestNext() {
+    canLoadNext && props.getNextNotes({ page: currentPage + 1 });
+  }
+
+  function renderItem({ item }) {
+    return (
+      <TouchableOpacity>
+        <View style={styles.itemContainer}>
+          <Text style={styles.itemTitle}>{item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
+  function footer() {
+    return (isLoadingNext || canLoadNext) && <ActivityIndicator style={styles.footer} />;
+  }
+
+  if (!data) {
+    return <ActivityView isLoading={isLoading} errorMessage={errorMessage} onReload={reloadData} />;
+  }
+  return (
+    <FlatList
+      testID="LIST"
+      contentContainerStyle={styles.contentContainer}
+      data={data}
+      refreshing={isRefreshing}
+      onRefresh={reloadData}
+      keyExtractor={keyExtractor}
+      renderItem={renderItem}
+      onEndReached={requestNext}
+      ListFooterComponent={footer}
+      onEndReachedThreshold={0.1}
+    />
+  );
+}
+
+NotesScreen.navigationOptions = ({ navigation }) => ({
   title: 'Notes',
   headerRight: (
     <Text style={styles.barButtonText} testID="LOGOUT_BTN" onPress={navigation.getParam('logout')}>
@@ -19,59 +78,7 @@ export const navigationOptions = ({ navigation }) => ({
   )
 });
 
-class NotesScreen extends React.PureComponent {
-  static navigationOptions = navigationOptions;
-
-  componentDidMount() {
-    this.props.navigation.setParams({ logout: this._logout });
-    this.props.getNotes();
-  }
-
-  _logout = () => {
-    this.props.logout();
-    this.props.navigation.navigate('Login');
-  };
-
-  _keyExtractor = item => item.id.toString();
-
-  _reloadData = () => {
-    this.props.getNotes({ isRefreshing: true });
-  };
-
-  _requestNext = () => {
-    const { currentPage, canLoadNext } = this.props.noteState;
-    canLoadNext && this.props.getNextNotes({ page: currentPage + 1 });
-  };
-
-  _renderItem = ({ item }) => (
-    <TouchableOpacity>
-      <View style={styles.itemContainer}>
-        <Text style={styles.itemTitle}>{item.title}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-
-  render() {
-    const { isLoading, errorMessage, isRefreshing, isLoadingNext, data } = this.props.noteState;
-    if (!data) {
-      return <ActivityView isLoading={isLoading} errorMessage={errorMessage} onReload={this._reloadData} />;
-    }
-    return (
-      <FlatList
-        testID="LIST"
-        contentContainerStyle={styles.contentContainer}
-        data={data}
-        refreshing={isRefreshing}
-        onRefresh={this._reloadData}
-        keyExtractor={this._keyExtractor}
-        renderItem={this._renderItem}
-        onEndReached={this._requestNext}
-        ListFooterComponent={isLoadingNext && <ActivityIndicator style={styles.footer} />}
-        onEndReachedThreshold={0.1}
-      />
-    );
-  }
-}
+export const navigationOptions = NotesScreen.navigationOptions;
 
 export default connect(
   mapStateToProps,

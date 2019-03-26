@@ -3,6 +3,12 @@ import { Provider } from 'react-redux';
 import TestRenderer from 'react-test-renderer';
 import { setTopLevelNavigator } from './navigationUtils';
 
+//mock hooks
+React.useEffect = React.useLayoutEffect;
+
+//mock async storage
+jest.setMock('@react-native-community/async-storage', {});
+
 //mock activity overlay
 export const ActivityOverlay = {
   showLoading: jest.fn(),
@@ -12,7 +18,7 @@ export const ActivityOverlay = {
 jest.setMock('../components/ActivityOverlay', ActivityOverlay);
 
 //mock navigation
-let _params;
+let _params = {};
 export const navigation = {
   navigate: jest.fn(),
   goBack: jest.fn(),
