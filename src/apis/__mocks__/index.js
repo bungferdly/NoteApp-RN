@@ -23,7 +23,7 @@ const mockClient = {
           error.response = { data, status, headers };
           reject(error);
         }
-      }, 2000);
+      }, 1000);
     })
 };
 
