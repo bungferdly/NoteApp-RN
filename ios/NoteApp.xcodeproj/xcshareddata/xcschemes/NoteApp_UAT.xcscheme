@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4221852121F5842200E7E2B1"
-               BuildableName = "Notes DEV.app"
-               BlueprintName = "NoteApp"
+               BlueprintIdentifier = "4221853C21F584C000E7E2B1"
+               BuildableName = "Notes UAT.app"
+               BlueprintName = "NoteApp_UAT"
                ReferencedContainer = "container:NoteApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +46,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4221852121F5842200E7E2B1"
-            BuildableName = "Notes DEV.app"
-            BlueprintName = "NoteApp"
+            BlueprintIdentifier = "4221853C21F584C000E7E2B1"
+            BuildableName = "Notes UAT.app"
+            BlueprintName = "NoteApp_UAT"
             ReferencedContainer = "container:NoteApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -69,9 +69,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4221852121F5842200E7E2B1"
-            BuildableName = "Notes DEV.app"
-            BlueprintName = "NoteApp"
+            BlueprintIdentifier = "4221853C21F584C000E7E2B1"
+            BuildableName = "Notes UAT.app"
+            BlueprintName = "NoteApp_UAT"
             ReferencedContainer = "container:NoteApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -88,9 +88,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4221852121F5842200E7E2B1"
-            BuildableName = "Notes DEV.app"
-            BlueprintName = "NoteApp"
+            BlueprintIdentifier = "4221853C21F584C000E7E2B1"
+            BuildableName = "Notes UAT.app"
+            BlueprintName = "NoteApp_UAT"
             ReferencedContainer = "container:NoteApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

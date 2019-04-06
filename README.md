@@ -14,13 +14,13 @@ Use [NoteServer](https://github.com/bungferdly/NoteServer) as the backend.
 ##### Run iOS
 
 ```
-> react-native run-ios --scheme="NoteApp | NoteApp_Staging | NoteApp_Production"
+> react-native run-ios --scheme="NoteApp | NoteApp_SIT | | NoteApp_UAT | NoteApp_PROD"
 ```
 
 ##### Run Android
 
 ```
-> react-native run-android --variant="devDebug | stagingDebug | prodDebug"
+> react-native run-android --variant="devDebug | sitDebug | uatDebug | prodDebug"
 ```
 
 ### Features
@@ -29,11 +29,11 @@ Use [NoteServer](https://github.com/bungferdly/NoteServer) as the backend.
 - Do RESTful API with a single action
 - Can do both promise & redux when calling API (without redux-saga or redux-thunk)
 - Automatic show loading, error, or success without overload the screen
-- Automatic switch between login and app screen
 - Automatic handle session expired
-- Mock server, the response is in the bundle, no need NoteServer or internet connection
+- Mock server for fast development, **NO NEED INTERNET CONNECTION ^^**
 - Multiple environment
-  - Dev : Use mock server
-  - Staging: Use NoteServer
-  - Production: Use dummy external url
+  - DEV : Use mock server
+  - SIT : Use NoteServer
+  - UAT : Use NoteServer
+  - PROD : Use dummy external url
 - Unit testing with mock server

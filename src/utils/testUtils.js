@@ -15,8 +15,8 @@ jest.setMock('@react-native-community/async-storage', {
 });
 
 //mock activity overlay
-const alertFn = (_, { buttons = [] } = {}) => {
-  buttons.forEach(b => b.onPress && b.onPress());
+const alertFn = (_, { buttons } = {}) => {
+  buttons && buttons.forEach(b => b.onPress && b.onPress());
   return Promise.resolve();
 };
 export const activity = {
@@ -39,6 +39,14 @@ export const navigation = {
 realNavigation.setNavigator({
   _navigation: navigation
 });
+
+// mock alert
+export const Alert = {
+  alert: jest.fn((_, __, buttons) => {
+    buttons && buttons.forEach(b => b.onPress && b.onPress());
+  })
+};
+jest.setMock('Alert', Alert);
 
 //mock environment
 const NativeModules = require.requireActual('react-native').NativeModules;

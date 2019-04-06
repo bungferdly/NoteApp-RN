@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center'
@@ -41,3 +41,5 @@ export default StyleSheet.create({
     textDecorationLine: 'underline'
   }
 });
+
+export default styles;

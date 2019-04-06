@@ -127,16 +127,20 @@ android {
     }
     flavorDimensions "env"
     productFlavors {
-        prod {
-            dimension "env"
-        }
         dev {
             dimension "env"
             applicationIdSuffix ".dev"
         }
-        staging {
+        sit {
             dimension "env"
-            applicationIdSuffix ".staging"
+            applicationIdSuffix ".sit"
+        }
+        uat {
+            dimension "env"
+            applicationIdSuffix ".uat"
+        }
+        prod {
+            dimension "env"
         }
     }
     // applicationVariants are e.g. debug, release

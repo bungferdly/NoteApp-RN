@@ -39,10 +39,6 @@ export default class ActivityOverlay extends React.Component {
   render() {
     const { callback, viewState } = this.state;
     const { type, title, message, buttons, aiSize, icon, duration, cancelable } = viewState;
-
-    if (duration) {
-      setTimeout(this.hide, duration);
-    }
     switch (type) {
       case types.ALERT: {
         const newButtons = (buttons || [{ text: 'OK', style: 'cancel' }]).map(b => ({
@@ -56,11 +52,22 @@ export default class ActivityOverlay extends React.Component {
         return null;
       }
       case types.OVERLAY:
+        if (duration) {
+          setTimeout(this.hide, duration);
+        }
         return (
           <View style={styles.container}>
-            {!!aiSize && <ActivityIndicator size={aiSize} />}
-            {!!icon && <Text style={styles.iconText}>{icon}</Text>}
-            {!!message && <Text style={styles.message}>{message}</Text>}
+            {!!aiSize && <ActivityIndicator testID="AI" size={aiSize} />}
+            {!!icon && (
+              <Text testID="ICON" style={styles.iconText}>
+                {icon}
+              </Text>
+            )}
+            {!!message && (
+              <Text testID="MESSAGE" style={styles.message}>
+                {message}
+              </Text>
+            )}
           </View>
         );
       default:

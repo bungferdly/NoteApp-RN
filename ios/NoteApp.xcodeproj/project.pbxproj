@@ -12,7 +12,6 @@
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
-		00E356F31AD99517003FC87E /* NoteAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NoteAppTests.m */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -21,7 +20,6 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		26782E75EFFC4F6FBCAA836B /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FCD6D64749405B95F75C5E /* libRNGestureHandler.a */; };
 		4221852321F5842200E7E2B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -61,6 +59,28 @@
 		4221855A21F585FB00E7E2B1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4221855921F585FB00E7E2B1 /* AppConfig.m */; };
 		4221855B21F585FB00E7E2B1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4221855921F585FB00E7E2B1 /* AppConfig.m */; };
 		4221855C21F585FB00E7E2B1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4221855921F585FB00E7E2B1 /* AppConfig.m */; };
+		4265412522589A9F00A6A6B8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		4265412622589A9F00A6A6B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		4265412722589A9F00A6A6B8 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4221855921F585FB00E7E2B1 /* AppConfig.m */; };
+		4265412922589A9F00A6A6B8 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4266F2872248D55B003A3046 /* JavaScriptCore.framework */; };
+		4265412A22589A9F00A6A6B8 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		4265412B22589A9F00A6A6B8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		4265412C22589A9F00A6A6B8 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		4265412D22589A9F00A6A6B8 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
+		4265412E22589A9F00A6A6B8 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
+		4265412F22589A9F00A6A6B8 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
+		4265413022589A9F00A6A6B8 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
+		4265413122589A9F00A6A6B8 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
+		4265413222589A9F00A6A6B8 /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
+		4265413322589A9F00A6A6B8 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		4265413422589A9F00A6A6B8 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
+		4265413522589A9F00A6A6B8 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
+		4265413622589A9F00A6A6B8 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67FCD6D64749405B95F75C5E /* libRNGestureHandler.a */; };
+		4265413822589A9F00A6A6B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		4265413922589A9F00A6A6B8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
+		4265414022589BB900A6A6B8 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4266F2C22249D336003A3046 /* libRNCAsyncStorage.a */; };
+		4265414122589BC800A6A6B8 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4266F2C22249D336003A3046 /* libRNCAsyncStorage.a */; };
+		4265414222589BD300A6A6B8 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4266F2C22249D336003A3046 /* libRNCAsyncStorage.a */; };
 		4266F2882248D55B003A3046 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4266F2872248D55B003A3046 /* JavaScriptCore.framework */; };
 		4266F2892248D563003A3046 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4266F2872248D55B003A3046 /* JavaScriptCore.framework */; };
 		4266F28A2248D56B003A3046 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4266F2872248D55B003A3046 /* JavaScriptCore.framework */; };
@@ -104,13 +124,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 832C81801AAF6DEF007FA2F7;
 			remoteInfo = RCTVibration;
-		};
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = NoteApp;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -359,12 +372,11 @@
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
 		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* NoteAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoteAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* NoteAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteAppTests.m; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* NoteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = NoteApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = NoteApp/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -373,10 +385,11 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = NoteApp/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4221853A21F5842200E7E2B1 /* NoteDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4221855521F584C000E7E2B1 /* NoteStaging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteStaging.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4221853A21F5842200E7E2B1 /* Notes DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Notes DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4221855521F584C000E7E2B1 /* Notes UAT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Notes UAT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4221855821F585FB00E7E2B1 /* AppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConfig.h; path = NoteApp/AppConfig.h; sourceTree = "<group>"; };
 		4221855921F585FB00E7E2B1 /* AppConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppConfig.m; path = NoteApp/AppConfig.m; sourceTree = "<group>"; };
+		4265413E22589A9F00A6A6B8 /* Notes SIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Notes SIT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4266F2872248D55B003A3046 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		67FCD6D64749405B95F75C5E /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
@@ -389,14 +402,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -415,6 +420,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				26782E75EFFC4F6FBCAA836B /* libRNGestureHandler.a in Frameworks */,
+				4265414222589BD300A6A6B8 /* libRNCAsyncStorage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +464,29 @@
 				4221854B21F584C000E7E2B1 /* libRCTVibration.a in Frameworks */,
 				4221854C21F584C000E7E2B1 /* libRCTWebSocket.a in Frameworks */,
 				4221854D21F584C000E7E2B1 /* libRNGestureHandler.a in Frameworks */,
+				4265414122589BC800A6A6B8 /* libRNCAsyncStorage.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4265412822589A9F00A6A6B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4265412922589A9F00A6A6B8 /* JavaScriptCore.framework in Frameworks */,
+				4265412A22589A9F00A6A6B8 /* libRCTBlob.a in Frameworks */,
+				4265412B22589A9F00A6A6B8 /* libRCTAnimation.a in Frameworks */,
+				4265412C22589A9F00A6A6B8 /* libReact.a in Frameworks */,
+				4265412D22589A9F00A6A6B8 /* libRCTActionSheet.a in Frameworks */,
+				4265412E22589A9F00A6A6B8 /* libRCTGeolocation.a in Frameworks */,
+				4265412F22589A9F00A6A6B8 /* libRCTImage.a in Frameworks */,
+				4265413022589A9F00A6A6B8 /* libRCTLinking.a in Frameworks */,
+				4265413122589A9F00A6A6B8 /* libRCTNetwork.a in Frameworks */,
+				4265413222589A9F00A6A6B8 /* libRCTSettings.a in Frameworks */,
+				4265413322589A9F00A6A6B8 /* libRCTText.a in Frameworks */,
+				4265413422589A9F00A6A6B8 /* libRCTVibration.a in Frameworks */,
+				4265413522589A9F00A6A6B8 /* libRCTWebSocket.a in Frameworks */,
+				4265413622589A9F00A6A6B8 /* libRNGestureHandler.a in Frameworks */,
+				4265414022589BB900A6A6B8 /* libRNCAsyncStorage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,10 +711,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* NoteApp.app */,
-				00E356EE1AD99517003FC87E /* NoteAppTests.xctest */,
-				4221853A21F5842200E7E2B1 /* NoteDev.app */,
-				4221855521F584C000E7E2B1 /* NoteStaging.app */,
+				13B07F961A680F5B00A75B9A /* Notes.app */,
+				4221853A21F5842200E7E2B1 /* Notes DEV.app */,
+				4221855521F584C000E7E2B1 /* Notes UAT.app */,
+				4265413E22589A9F00A6A6B8 /* Notes SIT.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -702,27 +731,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* NoteAppTests */ = {
+		13B07F861A680F5B00A75B9A /* NoteApp_PROD */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NoteAppTests" */;
-			buildPhases = (
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = NoteAppTests;
-			productName = NoteAppTests;
-			productReference = 00E356EE1AD99517003FC87E /* NoteAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		13B07F861A680F5B00A75B9A /* NoteApp_Production */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NoteApp_Production" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NoteApp_PROD" */;
 			buildPhases = (
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
@@ -733,9 +744,9 @@
 			);
 			dependencies = (
 			);
-			name = NoteApp_Production;
+			name = NoteApp_PROD;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* NoteApp.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Notes.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4221852121F5842200E7E2B1 /* NoteApp */ = {
@@ -753,12 +764,12 @@
 			);
 			name = NoteApp;
 			productName = "Hello World";
-			productReference = 4221853A21F5842200E7E2B1 /* NoteDev.app */;
+			productReference = 4221853A21F5842200E7E2B1 /* Notes DEV.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4221853C21F584C000E7E2B1 /* NoteApp_Staging */ = {
+		4221853C21F584C000E7E2B1 /* NoteApp_UAT */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4221855221F584C000E7E2B1 /* Build configuration list for PBXNativeTarget "NoteApp_Staging" */;
+			buildConfigurationList = 4221855221F584C000E7E2B1 /* Build configuration list for PBXNativeTarget "NoteApp_UAT" */;
 			buildPhases = (
 				4221853D21F584C000E7E2B1 /* Sources */,
 				4221854021F584C000E7E2B1 /* Frameworks */,
@@ -769,9 +780,27 @@
 			);
 			dependencies = (
 			);
-			name = NoteApp_Staging;
+			name = NoteApp_UAT;
 			productName = "Hello World";
-			productReference = 4221855521F584C000E7E2B1 /* NoteStaging.app */;
+			productReference = 4221855521F584C000E7E2B1 /* Notes UAT.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4265412322589A9F00A6A6B8 /* NoteApp_SIT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4265413B22589A9F00A6A6B8 /* Build configuration list for PBXNativeTarget "NoteApp_SIT" */;
+			buildPhases = (
+				4265412422589A9F00A6A6B8 /* Sources */,
+				4265412822589A9F00A6A6B8 /* Frameworks */,
+				4265413722589A9F00A6A6B8 /* Resources */,
+				4265413A22589A9F00A6A6B8 /* Bundle React Native code and images */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NoteApp_SIT;
+			productName = "Hello World";
+			productReference = 4265413E22589A9F00A6A6B8 /* Notes SIT.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -782,12 +811,6 @@
 			attributes = {
 				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
-				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
-				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NoteApp" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -861,9 +884,9 @@
 			projectRoot = "";
 			targets = (
 				4221852121F5842200E7E2B1 /* NoteApp */,
-				4221853C21F584C000E7E2B1 /* NoteApp_Staging */,
-				13B07F861A680F5B00A75B9A /* NoteApp_Production */,
-				00E356ED1AD99517003FC87E /* NoteAppTests */,
+				4265412322589A9F00A6A6B8 /* NoteApp_SIT */,
+				4221853C21F584C000E7E2B1 /* NoteApp_UAT */,
+				13B07F861A680F5B00A75B9A /* NoteApp_PROD */,
 			);
 		};
 /* End PBXProject section */
@@ -1145,13 +1168,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1176,6 +1192,15 @@
 			files = (
 				4221854F21F584C000E7E2B1 /* Images.xcassets in Resources */,
 				4221855021F584C000E7E2B1 /* LaunchScreen.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4265413722589A9F00A6A6B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4265413822589A9F00A6A6B8 /* Images.xcassets in Resources */,
+				4265413922589A9F00A6A6B8 /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1224,17 +1249,23 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		4265413A22589A9F00A6A6B8 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00E356F31AD99517003FC87E /* NoteAppTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1265,15 +1296,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* NoteApp_Production */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		4265412422589A9F00A6A6B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4265412522589A9F00A6A6B8 /* AppDelegate.m in Sources */,
+				4265412622589A9F00A6A6B8 /* main.m in Sources */,
+				4265412722589A9F00A6A6B8 /* AppConfig.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXTargetDependency section */
+/* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
 		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
@@ -1288,65 +1321,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
-				);
-				INFOPLIST_FILE = NoteAppTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NoteApp.app/NoteApp";
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
-				);
-				INFOPLIST_FILE = NoteAppTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NoteApp.app/NoteApp";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1370,7 +1344,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.noteapp;
-				PRODUCT_NAME = NoteApp;
+				PRODUCT_NAME = Notes;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1397,7 +1371,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.noteapp;
-				PRODUCT_NAME = NoteApp;
+				PRODUCT_NAME = Notes;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1425,7 +1399,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.noteapp.dev;
-				PRODUCT_NAME = NoteDev;
+				PRODUCT_NAME = "Notes DEV";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1452,7 +1426,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.noteapp.dev;
-				PRODUCT_NAME = NoteDev;
+				PRODUCT_NAME = "Notes DEV";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1464,7 +1438,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"STAGING=1",
+					"UAT=1",
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = (
@@ -1479,8 +1453,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.noteapp.staging;
-				PRODUCT_NAME = NoteStaging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noteapp.uat;
+				PRODUCT_NAME = "Notes UAT";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1491,7 +1465,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"STAGING=1",
+					"UAT=1",
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = (
@@ -1506,8 +1480,63 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.noteapp.staging;
-				PRODUCT_NAME = NoteStaging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noteapp.uat;
+				PRODUCT_NAME = "Notes UAT";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		4265413C22589A9F00A6A6B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"SIT=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+				);
+				INFOPLIST_FILE = NoteApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.noteapp.sit;
+				PRODUCT_NAME = "Notes SIT";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		4265413D22589A9F00A6A6B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"SIT=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+				);
+				INFOPLIST_FILE = NoteApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.noteapp.sit;
+				PRODUCT_NAME = "Notes SIT";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1614,16 +1643,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NoteAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NoteApp_Production" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NoteApp_PROD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1641,11 +1661,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4221855221F584C000E7E2B1 /* Build configuration list for PBXNativeTarget "NoteApp_Staging" */ = {
+		4221855221F584C000E7E2B1 /* Build configuration list for PBXNativeTarget "NoteApp_UAT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4221855321F584C000E7E2B1 /* Debug */,
 				4221855421F584C000E7E2B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4265413B22589A9F00A6A6B8 /* Build configuration list for PBXNativeTarget "NoteApp_SIT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4265413C22589A9F00A6A6B8 /* Debug */,
+				4265413D22589A9F00A6A6B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

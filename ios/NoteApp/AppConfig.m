@@ -18,12 +18,16 @@ RCT_EXPORT_MODULE();
 
 - (NSDictionary *)constantsToExport {
   
-#ifdef STAGING
-  NSString *env = @"staging";
-#endif
-  
 #ifdef DEV
   NSString *env = @"dev";
+#endif
+
+#ifdef SIT
+  NSString *env = @"sit";
+#endif
+  
+#ifdef UAT
+  NSString *env = @"uat";
 #endif
   
 #ifdef PROD
