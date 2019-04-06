@@ -8,10 +8,10 @@ export const accountActionTypes = {
 export const login = ({ username, password }) => ({
   type: accountActionTypes.LOGIN,
   api: loginApi({ username, password }),
-  username,
   loadingMessage: 'Logging in...',
   successMessage: 'Logged in!',
-  showError: true
+  showError: true,
+  username
 });
 
 export const logout = () => ({

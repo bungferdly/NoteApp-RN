@@ -1,21 +1,32 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import TestRenderer from 'react-test-renderer';
-import { setTopLevelNavigator } from './navigationUtils';
+import realNavigation from './navigationUtils';
+import realActivity from './activityUtils';
+import mockClient from '../apis/__mocks__';
 
 //mock hooks
 React.useEffect = React.useLayoutEffect;
 
 //mock async storage
-jest.setMock('@react-native-community/async-storage', {});
+jest.setMock('@react-native-community/async-storage', {
+  getItem: () => Promise.reject(),
+  setItem: () => Promise.reject()
+});
 
 //mock activity overlay
-export const ActivityOverlay = {
-  showLoading: jest.fn(),
-  showError: jest.fn(),
-  showSuccess: jest.fn()
+const alertFn = (_, { buttons = [] } = {}) => {
+  buttons.forEach(b => b.onPress && b.onPress());
+  return Promise.resolve();
 };
-jest.setMock('../components/ActivityOverlay', ActivityOverlay);
+export const activity = {
+  loading: jest.fn(Promise.resolve),
+  success: jest.fn(Promise.resolve),
+  error: jest.fn(alertFn),
+  alert: jest.fn(alertFn),
+  hide: jest.fn(Promise.resolve)
+};
+realActivity.setComponent(activity);
 
 //mock navigation
 let _params = {};
@@ -25,16 +36,9 @@ export const navigation = {
   setParams: params => (_params = params),
   getParam: key => _params[key]
 };
-const navigator = {
+realNavigation.setNavigator({
   _navigation: navigation
-};
-setTopLevelNavigator(navigator);
-
-//mock alert
-export const Alert = {
-  alert: jest.fn()
-};
-jest.setMock('Alert', Alert);
+});
 
 //mock environment
 const NativeModules = require.requireActual('react-native').NativeModules;
@@ -45,19 +49,22 @@ NativeModules.AppConfig = {
 //mock timer
 jest.useFakeTimers();
 
-//clear mock
-afterEach(() => {
-  navigation.navigate.mockClear();
-  navigation.goBack.mockClear();
-  ActivityOverlay.showLoading.mockClear();
-  ActivityOverlay.showError.mockClear();
-  ActivityOverlay.showSuccess.mockClear();
-  Alert.alert.mockClear();
-});
+//mock api response
+export const mockResponse = mockClient.mockResponse;
 
 export const renderer = component => {
-  const { store } = require('./storeUtils');
+  const store = require('./storeUtils').default;
   const tree = TestRenderer.create(<Provider store={store}>{component}</Provider>);
-  const getProps = testID => tree.root.findByProps({ testID }).props;
+  const getProps = testID => {
+    try {
+      return tree.root.findByProps({ testID }).props;
+    } catch {
+      return undefined;
+    }
+  };
   return { getProps };
 };
+
+afterEach(() => {
+  mockClient.mockResponse(undefined);
+});

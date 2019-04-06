@@ -1,6 +1,12 @@
 import { NativeModules } from 'react-native';
 
-export const selectEnv = envs => {
+const select = envs => {
   const env = NativeModules.AppConfig.env;
   return envs[env] || envs['default'];
 };
+
+const env = {
+  select
+};
+
+export default env;

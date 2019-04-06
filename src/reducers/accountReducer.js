@@ -5,7 +5,7 @@ const initialState = {
   username: null
 };
 
-export default function accountReducer(state = initialState, action) {
+export default function accountReducer(state, action) {
   switch (action.type) {
     case accountActionTypes.LOGIN:
       return {
@@ -19,6 +19,6 @@ export default function accountReducer(state = initialState, action) {
         username: state.username
       };
     default:
-      return state;
+      return state || initialState;
   }
 }

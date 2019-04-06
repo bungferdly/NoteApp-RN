@@ -5,7 +5,9 @@ export const noteActionTypes = {
   GETNEXT: 'note/GETNEXT'
 };
 
-export const getNotes = ({ isRefreshing = false, limit = 10 } = {}) => ({
+const limit = 10;
+
+export const getNotes = ({ isRefreshing = false } = {}) => ({
   type: noteActionTypes.GET,
   api: getNotesApi({ page: 1, limit }),
   isRefreshing,
@@ -13,7 +15,7 @@ export const getNotes = ({ isRefreshing = false, limit = 10 } = {}) => ({
   limit
 });
 
-export const getNextNotes = ({ page, limit = 10 }) => ({
+export const getNextNotes = ({ page }) => ({
   type: noteActionTypes.GETNEXT,
   api: getNotesApi({ page, limit }),
   showError: true,

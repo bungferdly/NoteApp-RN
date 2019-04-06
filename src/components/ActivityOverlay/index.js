@@ -1,72 +1,70 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { ActivityIndicator, View, Alert, Text } from 'react-native';
 import styles from './styles';
 
-let singleton = {
-  show: () => {}
-};
-
 const types = {
   HIDDEN: 0,
-  LOADING: 1,
-  SUCCESS: 2,
-  ERROR: 3
+  OVERLAY: 1,
+  ALERT: 2
 };
 
-export default class ActivityOverlay extends PureComponent {
-  state = {};
+let promise = Promise.resolve();
 
-  constructor(props) {
-    super(props);
-    singleton = this;
-  }
+export default class ActivityOverlay extends React.Component {
+  state = {
+    callback: null,
+    viewState: {}
+  };
 
-  static showLoading(message, params = {}) {
-    singleton.show({ type: types.LOADING, message, ...params });
-  }
+  loading = (message, params = {}) => this.show({ type: types.OVERLAY, aiSize: 'large', message, ...params });
 
-  static showSuccess(message, params = {}) {
-    singleton.show({ type: types.SUCCESS, duration: 1000, message, ...params });
-  }
+  success = (message, params = {}) => this.show({ type: types.OVERLAY, icon: '✓', duration: 1000, message, ...params });
 
-  static showError(message, params = {}) {
-    singleton.show({ type: types.ERROR, isAlert: true, title: 'Error', message, ...params });
-  }
+  error = (message, params = {}) => this.show({ type: types.ALERT, title: 'Error', message, ...params });
 
-  static hide() {
-    singleton.show({});
-  }
+  alert = (message, params = {}) => this.show({ type: types.ALERT, message, ...params });
 
-  show = state => {
-    this.setState({
-      type: types.HIDDEN,
-      title: undefined,
-      message: undefined,
-      buttons: undefined,
-      isAlert: undefined,
-      duration: undefined,
-      ...state
-    });
+  show = viewState => {
+    const newPromise = () => new Promise(callback => this.setState({ viewState, callback }));
+    promise = promise.then(newPromise);
+    return promise;
+  };
+
+  hide = () => {
+    const { callback } = this.state;
+    this.setState({ viewState: {}, callback: null }, callback);
+    return promise;
   };
 
   render() {
-    const { type, title, message, buttons, isAlert, duration } = this.state;
+    const { callback, viewState } = this.state;
+    const { type, title, message, buttons, aiSize, icon, duration, cancelable } = viewState;
 
     if (duration) {
-      setTimeout(ActivityOverlay.hide, duration);
+      setTimeout(this.hide, duration);
     }
-    if (isAlert) {
-      Alert.alert(title, message, buttons);
-    } else if (type) {
-      return (
-        <View style={styles.container}>
-          {type == types.LOADING && <ActivityIndicator size="large" />}
-          {type == types.SUCCESS && <Text style={styles.iconText}>✓</Text>}
-          {type == types.ERROR && <Text style={styles.iconText}>✕</Text>}
-          {!!message && <Text style={styles.message}>{message}</Text>}
-        </View>
-      );
+    switch (type) {
+      case types.ALERT: {
+        const newButtons = (buttons || [{ text: 'OK', style: 'cancel' }]).map(b => ({
+          ...b,
+          onPress: () => {
+            callback();
+            b.onPress && b.onPress();
+          }
+        }));
+        Alert.alert(title, message, newButtons, { cancelable, onDismiss: callback });
+        return null;
+      }
+      case types.OVERLAY:
+        return (
+          <View style={styles.container}>
+            {!!aiSize && <ActivityIndicator size={aiSize} />}
+            {!!icon && <Text style={styles.iconText}>{icon}</Text>}
+            {!!message && <Text style={styles.message}>{message}</Text>}
+          </View>
+        );
+      default:
+        return null;
     }
-    return null;
   }
 }

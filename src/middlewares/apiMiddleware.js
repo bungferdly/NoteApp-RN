@@ -1,8 +1,8 @@
-import { request } from '../utils/apiUtils';
+import api from '../utils/apiUtils';
 
 const apiMiddleware = store => next => action => {
   if (action.api) {
-    return request(action);
+    return api.request(action);
   }
   return next(action);
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { act } from 'react-test-renderer';
-import { ActivityOverlay, renderer, navigation } from '../../../utils/testUtils';
+import { renderer, activity, navigation } from '../../../utils/testUtils';
 import LoginScreen from '../index';
 
 const tree = renderer(<LoginScreen navigation={navigation} />);
@@ -8,7 +8,7 @@ const tree = renderer(<LoginScreen navigation={navigation} />);
 test('login error', () => {
   tree.getProps('LOGIN_BTN').onPress();
   jest.runAllTimers();
-  expect(ActivityOverlay.showError).toBeCalled();
+  expect(activity.error).toBeCalled();
 });
 
 test('login success', () => {

@@ -19,6 +19,8 @@ const middlewares = applyMiddleware(apiMiddleware);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const store = createStore(persistReducer(persistConfig, reducers), undefined, composeEnhancers(middlewares));
+const store = createStore(persistReducer(persistConfig, reducers), undefined, composeEnhancers(middlewares));
 
-export const createPersistor = () => persistStore(store);
+export const persistor = persistStore(store);
+
+export default store;

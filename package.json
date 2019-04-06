@@ -29,6 +29,7 @@
   },
   "jest": {
     "preset": "react-native",
+    "clearMocks": true,
     "transform": {
       "\\.js$": "./jest.preprocessor.js"
     },

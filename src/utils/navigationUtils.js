@@ -1,6 +1,6 @@
 let navigator;
 
-export function setTopLevelNavigator(navigatorRef) {
+function setNavigator(navigatorRef) {
   navigator = navigatorRef;
 }
 
@@ -8,6 +8,9 @@ function navigate(...props) {
   navigator._navigation.navigate(...props);
 }
 
-export const navigation = {
+const navigation = {
+  setNavigator,
   navigate
 };
+
+export default navigation;

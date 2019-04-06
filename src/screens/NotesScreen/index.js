@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { View, FlatList, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { getNotes, getNextNotes } from '../../actions/noteActions';
-import styles from './styles';
 import ActivityView from '../../components/ActivityView';
+import { getNotes, getNextNotes } from '../../actions/noteActions';
 import { logout } from '../../actions/accountActions';
+import styles from './styles';
 
 const mapStateToProps = state => ({
   noteState: state.note
@@ -51,7 +51,9 @@ function NotesScreen(props) {
   }
 
   if (!data) {
-    return <ActivityView isLoading={isLoading} errorMessage={errorMessage} onReload={reloadData} />;
+    return (
+      <ActivityView testID="ACTIVITY_VIEW" isLoading={isLoading} errorMessage={errorMessage} onReload={reloadData} />
+    );
   }
   return (
     <FlatList

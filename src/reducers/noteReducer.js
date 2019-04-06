@@ -11,7 +11,7 @@ const initialState = {
   currentPage: 1
 };
 
-export default function noteReducer(state = initialState, action) {
+export default function noteReducer(state, action) {
   switch (action.type) {
     case noteActionTypes.GET:
       return {
@@ -34,6 +34,6 @@ export default function noteReducer(state = initialState, action) {
     case accountActionTypes.LOGOUT:
       return initialState;
     default:
-      return state;
+      return state || initialState;
   }
 }

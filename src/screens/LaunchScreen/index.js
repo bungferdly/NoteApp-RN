@@ -1,4 +1,4 @@
-import { store } from '../../utils/storeUtils';
+import store from '../../utils/storeUtils';
 
 export default function LaunchScreen(props) {
   const token = store.getState().account.accessToken;
