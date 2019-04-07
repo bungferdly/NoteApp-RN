@@ -12,29 +12,26 @@ test('initial render', () => {
 
 test('initial error', () => {
   mockResponse({ status: 400 });
-  jest.runAllTimers();
+  tree.run();
   expect(tree.getProps('ACTIVITY_VIEW').errorMessage).toBeTruthy();
 });
 
 test('reload', () => {
-  tree.getProps('ACTIVITY_VIEW').onReload();
-  jest.runAllTimers();
+  tree.do('ACTIVITY_VIEW').onReload();
   expect(tree.getProps('LIST').data.length).toEqual(10);
 });
 
 test('scroll to bottom', () => {
-  tree.getProps('LIST').onEndReached();
-  jest.runAllTimers();
+  tree.do('LIST').onEndReached();
   expect(tree.getProps('LIST').data.length).toEqual(20);
 });
 
 test('refreshing', () => {
-  tree.getProps('LIST').onRefresh();
-  jest.runAllTimers();
+  tree.do('LIST').onRefresh();
   expect(tree.getProps('LIST').data.length).toEqual(10);
 });
 
 test('logout', () => {
-  headerRightTree.getProps('LOGOUT_BTN').onPress();
+  headerRightTree.do('LOGOUT_BTN').onPress();
   expect(navigation.navigate).toBeCalledWith('Login');
 });

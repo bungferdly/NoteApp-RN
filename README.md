@@ -37,3 +37,5 @@ Use [NoteServer](https://github.com/bungferdly/NoteServer) as the backend.
   - UAT : Use NoteServer
   - PROD : Use dummy external url
 - Unit testing with mock server
+- Dynamic styles & layout
+- Theme

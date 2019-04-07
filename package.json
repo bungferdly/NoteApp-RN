@@ -28,6 +28,9 @@
     "redux-devtools-extension": "^2.13.8"
   },
   "jest": {
+    "moduleNameMapper": {
+      "^[@./a-zA-Z0-9$_-]+\\.(png|jpg)$": "RelativeImageStub"
+    },
     "preset": "react-native",
     "clearMocks": true,
     "collectCoverage": true,

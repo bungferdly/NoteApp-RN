@@ -1,29 +1,30 @@
-import { StyleSheet } from 'react-native';
+import StyleSheet, { L, G } from '../../utils/stylesheetUtils';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center'
+    backgroundColor: G.colors.BACKGROUND_1
+  },
+  contentContainer: () => ({
+    flex: 1,
+    paddingHorizontal: L.left
+  }),
+  logo: {
+    display: () => (L.height < 400 ? 'none' : 'flex'),
+    alignSelf: 'center'
   },
   title: {
-    alignSelf: 'center',
-    fontWeight: 'bold',
-    marginBottom: 60,
-    fontSize: 40
+    ...G.texts.H1,
+    alignSelf: 'center'
   },
   textInput: {
-    height: 40,
-    paddingHorizontal: 10,
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: '#CCC',
     marginHorizontal: 20,
     marginVertical: 10
   },
   button: {
+    backgroundColor: G.colors.ACCENT_5,
     marginHorizontal: 20,
     marginVertical: 10,
-    backgroundColor: '#F90',
     paddingHorizontal: 10,
     borderRadius: 4,
     height: 40,
@@ -31,8 +32,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonText: {
-    fontWeight: 'bold',
-    color: 'white'
+    fontWeight: G.fonts.WEIGHT_BOLD,
+    color: G.colors.FOREGROUND_9
   },
   notNowText: {
     marginTop: 20,

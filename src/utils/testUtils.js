@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import TestRenderer from 'react-test-renderer';
+import TestRenderer, { act } from 'react-test-renderer';
 import realNavigation from './navigationUtils';
 import realActivity from './activityUtils';
 import mockClient from '../apis/__mocks__';
@@ -62,7 +62,8 @@ export const mockResponse = mockClient.mockResponse;
 
 export const renderer = component => {
   const store = require('./storeUtils').default;
-  const tree = TestRenderer.create(<Provider store={store}>{component}</Provider>);
+  const render = comp => <Provider store={store}>{comp}</Provider>;
+  const tree = TestRenderer.create(render(component));
   const getProps = testID => {
     try {
       return tree.root.findByProps({ testID }).props;
@@ -70,7 +71,25 @@ export const renderer = component => {
       return undefined;
     }
   };
-  return { getProps };
+  const doo = testID => {
+    const newProps = {};
+    const props = getProps(testID);
+    Object.keys(props).forEach(k => {
+      if (typeof props[k] == 'function') {
+        newProps[k] = (...args) => {
+          run(() => props[k](...args));
+        };
+      }
+    });
+    return newProps;
+  };
+  const run = fn => {
+    act(() => {
+      fn && fn();
+      jest.runAllTimers();
+    });
+  };
+  return { getProps, do: doo, run };
 };
 
 afterEach(() => {

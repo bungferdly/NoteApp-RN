@@ -1,8 +1,6 @@
-import api from '../utils/apiUtils';
-
-const apiMiddleware = store => next => action => {
+const apiMiddleware = _ => next => action => {
   if (action.api) {
-    return api.request(action);
+    return require('../utils/apiUtils').default.request(action);
   }
   return next(action);
 };

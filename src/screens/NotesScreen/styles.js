@@ -1,12 +1,14 @@
-import { StyleSheet } from 'react-native';
+import StyleSheet, { L } from '../../utils/stylesheetUtils';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  contentContainer: {
-    paddingVertical: 10
-  },
+  contentContainer: () => ({
+    paddingTop: 10,
+    paddingBottom: L.bottom + 10,
+    marginHorizontal: L.left
+  }),
   itemContainer: {
     marginHorizontal: 15,
     marginVertical: 5,

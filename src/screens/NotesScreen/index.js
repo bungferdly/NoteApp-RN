@@ -1,26 +1,24 @@
 import React, { useEffect } from 'react';
 import { View, FlatList, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { connect } from 'react-redux';
 import ActivityView from '../../components/ActivityView';
+import store from '../../utils/storeUtils';
 import { getNotes, getNextNotes } from '../../actions/noteActions';
 import { logout } from '../../actions/accountActions';
 import styles from './styles';
 
-const mapStateToProps = state => ({
-  noteState: state.note
-});
-
 function NotesScreen(props) {
-  const { noteState, navigation } = props;
+  const [noteState, dispatch] = store.useState(s => s.note);
   const { isLoading, errorMessage, isRefreshing, isLoadingNext, data, currentPage, canLoadNext } = noteState;
+  const { navigation } = props;
+  styles.useLayout();
 
   useEffect(() => {
     navigation.setParams({ logout: doLogout });
-    props.getNotes();
+    dispatch(getNotes());
   }, []);
 
   function doLogout() {
-    props.logout();
+    dispatch(logout());
     navigation.navigate('Login');
   }
 
@@ -29,11 +27,11 @@ function NotesScreen(props) {
   }
 
   function reloadData() {
-    props.getNotes({ isRefreshing: true });
+    dispatch(getNotes({ isRefreshing: true }));
   }
 
   function requestNext() {
-    canLoadNext && props.getNextNotes({ page: currentPage + 1 });
+    canLoadNext && dispatch(getNextNotes({ page: currentPage + 1 }));
   }
 
   function renderItem({ item }) {
@@ -82,7 +80,4 @@ NotesScreen.navigationOptions = ({ navigation }) => ({
 
 export const navigationOptions = NotesScreen.navigationOptions;
 
-export default connect(
-  mapStateToProps,
-  { logout, getNotes, getNextNotes }
-)(NotesScreen);
+export default NotesScreen;
