@@ -1,4 +1,4 @@
-const texts = {
+const G = {
   H1: {
     color: '@TEXT',
     fontFamily: '@FONT',
@@ -7,8 +7,4 @@ const texts = {
   }
 };
 
-const globalStyles = {
-  texts
-};
-
-export default globalStyles;
+export default G;

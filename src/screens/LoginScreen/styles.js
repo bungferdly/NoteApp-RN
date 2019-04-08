@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   title: {
-    ...G.texts.H1,
+    ...G.H1,
     alignSelf: 'center'
   },
   textInput: {

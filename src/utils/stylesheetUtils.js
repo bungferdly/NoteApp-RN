@@ -14,6 +14,7 @@ function calculateStyles(styles, styleGenerator, window, theme) {
     const [height] = [screen.width, screen.height].sort((a, b) => b - a);
     const isLandscape = Number(screen.width > screen.height);
     let screenLevel = 0;
+    Platform.select({ ios: height > 0, android: false }) && screenLevel++;
     Platform.select({ ios: height > 800, android: false }) && screenLevel++;
     Platform.select({ ios: height > 1000, android: false }) && screenLevel++;
     Platform.select({ ios: height > 1100, android: false }) && screenLevel++;
@@ -23,13 +24,13 @@ function calculateStyles(styles, styleGenerator, window, theme) {
     _theme = theme;
 
     _safeArea = {};
-    _safeArea.SF_LEFT = [[0, 0, 0, 0], [0, 44, 0, 0]][isLandscape][screenLevel];
+    _safeArea.SF_LEFT = [[0, 0, 0, 0, 0], [0, 0, 44, 0, 0]][isLandscape][screenLevel];
     _safeArea.SF_RIGHT = _safeArea.SF_LEFT;
-    _safeArea.SF_TOP = [[20, 44, 20, 24], [0, 0, 20, 24]][isLandscape][screenLevel];
-    _safeArea.SF_BOTTOM = [[0, 34, 0, 20], [0, 24, 0, 20]][isLandscape][screenLevel];
+    _safeArea.SF_TOP = [[0, 20, 44, 20, 24], [0, 0, 0, 20, 24]][isLandscape][screenLevel];
+    _safeArea.SF_BOTTOM = [[0, 0, 34, 0, 20], [0, 0, 24, 0, 20]][isLandscape][screenLevel];
 
-    const w = ['l', 'm', 's'][[700, 350, 0].findIndex(n => _window.width > n)];
-    const h = ['l', 'm', 's'][[700, 400, 0].findIndex(n => _window.height > n)];
+    const w = ['l', 'm', 's'][[750, 350, 0].findIndex(n => _window.width > n)];
+    const h = ['l', 'm', 's'][[900, 600, 0].findIndex(n => _window.height > n)];
     _dimRgx = new RegExp(`^w(a|${w})h(a|${h})$`);
   }
 
