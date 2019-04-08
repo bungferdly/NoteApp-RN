@@ -1,17 +1,17 @@
-import StyleSheet, { G } from '../../utils/stylesheetUtils';
+import StyleSheet from '../../utils/stylesheetUtils';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: G.colors.BACKGROUND_2,
-    borderColor: G.colors.BORDER_5,
-    color: G.colors.FOREGROUND_1,
+    backgroundColor: '@TF_BACKGROUND',
+    borderColor: '@TF_BORDER',
+    color: '@TEXT',
     height: 40,
     paddingHorizontal: 10,
     borderRadius: 4,
     borderWidth: 1
   },
-  placeholderColor: G.colors.FOREGROUND_4,
-  keyboardAppearance: ['light', 'dark']
+  placeholderColor: '@TF_PLACEHOLDER',
+  keyboard: '@TF_KEYBOARD'
 });
 
 export default styles;

@@ -1,22 +1,23 @@
-import { StyleSheet } from 'react-native';
+import StyleSheet from '../../utils/stylesheetUtils';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: '@BACKGROUND',
     alignItems: 'center'
   },
   errorContainer: {
-    backgroundColor: '#EEE'
+    backgroundColor: '@ER_BACKGROUND'
   },
   errorMessage: {
-    color: '#999',
+    color: '@ER_TEXT',
     fontSize: 16
   },
   reloadText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#F90',
+    fontWeight: '@FW_BOLD',
+    color: '@BT_BACKGROUND',
     marginTop: 20
   }
 });

@@ -3,6 +3,7 @@ import { View, Text, ActivityIndicator } from 'react-native';
 import styles from './styles';
 
 function ActivityView({ style, isLoading, errorMessage, onReload, ...props }) {
+  styles.useLayout();
   if (isLoading) {
     return (
       <View style={[styles.container, style]} {...props}>
@@ -21,7 +22,7 @@ function ActivityView({ style, isLoading, errorMessage, onReload, ...props }) {
       </View>
     );
   }
-  return null;
+  return <View style={[styles.container, style]} {...props} />;
 }
 
 export default React.memo(ActivityView);

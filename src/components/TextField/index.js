@@ -7,7 +7,7 @@ function TextField({ style, ...props }) {
   return (
     <TextInput
       placeholderTextColor={styles.placeholderColor}
-      keyboardAppearance={styles.keyboardAppearance}
+      keyboardAppearance={styles.keyboard}
       style={[styles.container, style]}
       {...props}
     />

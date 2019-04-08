@@ -5,8 +5,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { isEqual } from 'lodash';
 import accountReducer from '../reducers/accountReducer';
 import noteReducer from '../reducers/noteReducer';
+import themeReducer from '../reducers/themeReducer';
 import apiMiddleware from '../middlewares/apiMiddleware';
-import { themeReducer } from './themeUtils';
 
 const persistConfig = {
   key: 'root',
@@ -16,7 +16,7 @@ const persistConfig = {
 const reducers = combineReducers({
   account: accountReducer,
   note: noteReducer,
-  _theme: themeReducer
+  theme: themeReducer
 });
 
 const middlewares = applyMiddleware(apiMiddleware);

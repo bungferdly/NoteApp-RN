@@ -6,22 +6,26 @@ import {
   View,
   Text,
   Image,
+  Platform,
   TouchableWithoutFeedback
 } from 'react-native';
 import TextField from '../../components/TextField';
-import theme from '../../utils/themeUtils';
 import store from '../../utils/storeUtils';
 import { login } from '../../actions/accountActions';
+import { setThemeValue } from '../../actions/themeActions';
 import styles from './styles';
 
 function LoginScreen(props) {
-  const [initialUsername, dispatch] = store.useState(s => s.account.username);
+  const [{ initialUsername, theme }, dispatch] = store.useState(s => ({
+    initialUsername: s.account.username,
+    theme: s.theme.value
+  }));
   const [username, setUsername] = useState(initialUsername || '');
   const [password, setPassword] = useState('');
   styles.useLayout();
 
   function toggleTheme() {
-    theme.setValue((theme.value + 1) % 2);
+    dispatch(setThemeValue(theme == 'default' ? 'dark' : 'default'));
   }
 
   function doLogin() {
@@ -31,7 +35,7 @@ function LoginScreen(props) {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
+    <KeyboardAvoidingView style={styles.container} behavior={Platform.select({ ios: 'padding', android: undefined })}>
       <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
         <View style={styles.contentContainer}>
           <View style={styles.container} />

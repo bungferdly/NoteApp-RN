@@ -18,10 +18,13 @@ test('login success', () => {
 });
 
 test('change theme', () => {
-  const prevColor = tree.getProps('THEME_BTN').style.backgroundColor;
+  const color1 = tree.getProps('THEME_BTN').style.backgroundColor;
   tree.do('THEME_BTN').onPress();
-  const nextColor = tree.getProps('THEME_BTN').style.backgroundColor;
-  expect(nextColor).not.toEqual(prevColor);
+  const color2 = tree.getProps('THEME_BTN').style.backgroundColor;
+  tree.do('THEME_BTN').onPress();
+  const color3 = tree.getProps('THEME_BTN').style.backgroundColor;
+  expect(color2).not.toEqual(color1);
+  expect(color3).toEqual(color1);
 });
 
 test('change dimension', () => {

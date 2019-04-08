@@ -1,47 +1,71 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Dimensions, Platform } from 'react-native';
-import theme from './themeUtils';
-import globalStyles from '../constants/globalStyles';
+import config from '../constants/config';
+import store from './storeUtils';
 
-export const L = Dimensions.get('window');
-export const G = globalStyles;
+let _dimRgx;
+let _window = {};
+let _safeArea = {};
+let _theme;
 
-function calculateSafeArea() {
-  const screen = Dimensions.get('screen');
-  const [height] = [screen.width, screen.height].sort((a, b) => b - a);
-  const isLandscape = Number(screen.width > screen.height);
-  let screenLevel = 0;
-  Platform.select({ ios: height > 800, android: false }) && screenLevel++;
-  Platform.select({ ios: height > 1000, android: false }) && screenLevel++;
-  Platform.select({ ios: height > 1100, android: false }) && screenLevel++;
-  L.left = [[0, 0, 0, 0], [0, 44, 0, 0]][isLandscape][screenLevel];
-  L.right = L.left;
-  L.top = [[20, 44, 20, 24], [0, 0, 20, 24]][isLandscape][screenLevel];
-  L.bottom = [[0, 34, 0, 20], [0, 24, 0, 20]][isLandscape][screenLevel];
+function calculateStyles(styles, styleGenerator, window, theme) {
+  if (_window.width != window.width || _window.height != window.height || _theme != theme) {
+    const screen = Dimensions.get('screen');
+    const [height] = [screen.width, screen.height].sort((a, b) => b - a);
+    const isLandscape = Number(screen.width > screen.height);
+    let screenLevel = 0;
+    Platform.select({ ios: height > 800, android: false }) && screenLevel++;
+    Platform.select({ ios: height > 1000, android: false }) && screenLevel++;
+    Platform.select({ ios: height > 1100, android: false }) && screenLevel++;
+
+    _window = window;
+
+    _theme = theme;
+
+    _safeArea = {};
+    _safeArea.SF_LEFT = [[0, 0, 0, 0], [0, 44, 0, 0]][isLandscape][screenLevel];
+    _safeArea.SF_RIGHT = _safeArea.SF_LEFT;
+    _safeArea.SF_TOP = [[20, 44, 20, 24], [0, 0, 20, 24]][isLandscape][screenLevel];
+    _safeArea.SF_BOTTOM = [[0, 34, 0, 20], [0, 24, 0, 20]][isLandscape][screenLevel];
+
+    const w = ['l', 'm', 's'][[700, 350, 0].findIndex(n => _window.width > n)];
+    const h = ['l', 'm', 's'][[700, 400, 0].findIndex(n => _window.height > n)];
+    _dimRgx = new RegExp(`^w(a|${w})h(a|${h})$`);
+  }
+
+  const newStyles = generateStyles(styleGenerator);
+  Object.keys(newStyles).forEach(k => (styles[k] = newStyles[k]));
 }
 
 function generateStyles(styleGenerator) {
   const ss = {};
   Object.keys(styleGenerator).forEach(k => {
-    const s = styleGenerator[k];
-    if (Array.isArray(s)) {
-      ss[k] = theme.select(s);
-    } else if (typeof s == 'object') {
-      ss[k] = generateStyles(s);
-    } else if (typeof s == 'function') {
-      ss[k] = s();
-    } else {
-      ss[k] = s;
+    let s = styleGenerator[k];
+    while (true) {
+      if (typeof s == 'string' && s[0] == '@') {
+        const key = s.replace('@', '');
+        s = _safeArea[key] || config.themes[_theme][key] || config.themes.default[key];
+      } else if (typeof s == 'object' && s.waha) {
+        const { waha, ...dims } = s;
+        s = dims[Object.keys(dims).find(k => _dimRgx.test(k))] || waha;
+      } else {
+        break;
+      }
     }
+    if (typeof s == 'object') {
+      s = generateStyles(s);
+    }
+    ss[k] = s;
   });
   return ss;
 }
 
 function create(styleGenerator) {
   const styles = {};
+
   styles.useLayout = function() {
     const [window, setWindow] = useState(() => Dimensions.get('window'));
-    theme.useValue();
+    const [theme] = store.useState(s => s.theme.value);
 
     useEffect(() => {
       const listener = ({ window }) => setWindow(window);
@@ -50,11 +74,8 @@ function create(styleGenerator) {
     }, [window]);
 
     useMemo(() => {
-      Object.keys(window).forEach(k => (L[k] = window[k]));
-      calculateSafeArea();
-      const newStyles = generateStyles(styleGenerator);
-      Object.keys(newStyles).forEach(k => (styles[k] = newStyles[k]));
-    }, [window, theme.value]);
+      calculateStyles(styles, styleGenerator, window, theme);
+    }, [window, theme]);
   };
 
   return styles;

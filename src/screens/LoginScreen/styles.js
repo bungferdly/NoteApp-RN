@@ -1,16 +1,17 @@
-import StyleSheet, { L, G } from '../../utils/stylesheetUtils';
+import StyleSheet from '../../utils/stylesheetUtils';
+import G from '../../constants/globalStyles';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: G.colors.BACKGROUND_1
+    backgroundColor: '@BACKGROUND'
   },
-  contentContainer: () => ({
+  contentContainer: {
     flex: 1,
-    paddingHorizontal: L.left
-  }),
+    paddingHorizontal: '@SF_LEFT'
+  },
   logo: {
-    display: () => (L.height < 400 ? 'none' : 'flex'),
+    display: { waha: 'flex', wahs: 'none' },
     alignSelf: 'center'
   },
   title: {
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   button: {
-    backgroundColor: G.colors.ACCENT_5,
+    backgroundColor: '@BT_BACKGROUND',
     marginHorizontal: 20,
     marginVertical: 10,
     paddingHorizontal: 10,
@@ -32,8 +33,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonText: {
-    fontWeight: G.fonts.WEIGHT_BOLD,
-    color: G.colors.FOREGROUND_9
+    fontWeight: '@FW_BOLD',
+    color: '@BT_TEXT'
   },
   notNowText: {
     marginTop: 20,

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, FlatList, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity, ActivityIndicator, StatusBar } from 'react-native';
 import ActivityView from '../../components/ActivityView';
 import store from '../../utils/storeUtils';
 import { getNotes, getNextNotes } from '../../actions/noteActions';
@@ -56,6 +56,7 @@ function NotesScreen(props) {
   return (
     <FlatList
       testID="LIST"
+      style={styles.container}
       contentContainerStyle={styles.contentContainer}
       data={data}
       refreshing={isRefreshing}
@@ -71,6 +72,8 @@ function NotesScreen(props) {
 
 NotesScreen.navigationOptions = ({ navigation }) => ({
   title: 'Notes',
+  headerTitleStyle: styles.headerTitle,
+  headerStyle: styles.header,
   headerRight: (
     <Text style={styles.barButtonText} testID="LOGOUT_BTN" onPress={navigation.getParam('logout')}>
       Logout

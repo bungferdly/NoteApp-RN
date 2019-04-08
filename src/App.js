@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import ActivityOverlay from './components/ActivityOverlay';
+import StatusBar from './components/StatusBar';
 import RootNavigator from './navigators/RootNavigator';
 import store, { persistor } from './utils/storeUtils';
 import navigation from './utils/navigationUtils';
@@ -12,6 +13,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <PersistGate persistor={persistor}>
+          <StatusBar />
           <RootNavigator ref={navigation.setNavigator} />
           <ActivityOverlay ref={activity.setComponent} />
         </PersistGate>
