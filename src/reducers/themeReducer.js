@@ -1,8 +1,5 @@
 import { themeActionTypes } from '../actions/themeActions';
-
-const initialState = {
-  value: 'default'
-};
+import initialState from '../constants/initialState';
 
 export default function themeReducer(state, action) {
   switch (action.type) {
@@ -12,6 +9,6 @@ export default function themeReducer(state, action) {
         value: action.payload
       };
     default:
-      return state || initialState;
+      return state || initialState.theme;
   }
 }

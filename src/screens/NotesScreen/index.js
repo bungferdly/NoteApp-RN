@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, FlatList, Text, TouchableOpacity, ActivityIndicator, StatusBar } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import ActivityView from '../../components/ActivityView';
 import store from '../../utils/storeUtils';
 import { getNotes, getNextNotes } from '../../actions/noteActions';

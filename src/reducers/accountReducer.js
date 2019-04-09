@@ -1,9 +1,5 @@
 import { accountActionTypes } from '../actions/accountActions';
-
-const initialState = {
-  accessToken: null,
-  username: null
-};
+import initialState from '../constants/initialState';
 
 export default function accountReducer(state, action) {
   switch (action.type) {
@@ -19,6 +15,6 @@ export default function accountReducer(state, action) {
         username: state.username
       };
     default:
-      return state || initialState;
+      return state || initialState.account;
   }
 }

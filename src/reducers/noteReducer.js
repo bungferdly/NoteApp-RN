@@ -1,15 +1,6 @@
 import { noteActionTypes } from '../actions/noteActions';
 import { accountActionTypes } from '../actions/accountActions';
-
-const initialState = {
-  data: null,
-  errorMessage: null,
-  isLoading: false,
-  isRefreshing: false,
-  isLoadingNext: false,
-  canLoadNext: false,
-  currentPage: 1
-};
+import initialState from '../constants/initialState';
 
 export default function noteReducer(state, action) {
   switch (action.type) {
@@ -34,6 +25,6 @@ export default function noteReducer(state, action) {
     case accountActionTypes.LOGOUT:
       return initialState;
     default:
-      return state || initialState;
+      return state || initialState.note;
   }
 }
