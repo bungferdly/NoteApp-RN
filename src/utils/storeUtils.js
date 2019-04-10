@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import { isEqual } from 'lodash';
@@ -22,9 +23,7 @@ const reducers = combineReducers({
 
 const middlewares = applyMiddleware(apiMiddleware);
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(persistReducer(persistConfig, reducers), initialState, composeEnhancers(middlewares));
+const store = createStore(persistReducer(persistConfig, reducers), initialState, composeWithDevTools(middlewares));
 
 store.useState = function(mapState) {
   let [state, setState] = useState(() => mapState(store.getState()));

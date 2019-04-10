@@ -5,7 +5,7 @@ interface ApiObject {
 }
 
 type Dispatch = <D>(a: D) => Promise<D>;
-type UseStateWith = <I>(i: I) => <T>(p: (s: I) => T) => [T, Dispatch];
+type UseStateWith = <I>(i: I) => <T>(mapState: (state: I) => T) => [T, Dispatch];
 
 const useStateWith: UseStateWith;
 const useState = useStateWith(initialState);
