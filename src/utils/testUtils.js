@@ -1,5 +1,4 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import TestRenderer, { act } from 'react-test-renderer';
 import realActivity from './activityUtils';
 import mockClient from '../apis/__mocks__';
@@ -64,9 +63,7 @@ jest.useFakeTimers();
 export const mockResponse = mockClient.mockResponse;
 
 export const renderer = component => {
-  const store = require('./storeUtils').default;
-  const render = comp => <Provider store={store}>{comp}</Provider>;
-  const tree = TestRenderer.create(render(component));
+  const tree = TestRenderer.create(component);
   const getProps = testID => {
     try {
       return tree.root.findByProps({ testID }).props;
