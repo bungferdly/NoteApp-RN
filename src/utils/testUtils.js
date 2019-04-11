@@ -1,20 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import TestRenderer, { act } from 'react-test-renderer';
-import realNavigation from './navigationUtils';
 import realActivity from './activityUtils';
 import mockClient from '../apis/__mocks__';
 
-//mock hooks
+// mock hooks
 React.useEffect = React.useLayoutEffect;
 
-//mock async storage
+// mock async storage
 jest.setMock('@react-native-community/async-storage', {
   getItem: () => Promise.reject(),
   setItem: () => Promise.reject()
 });
 
-//mock activity overlay
+// mock activity overlay
 const alertFn = (_, { buttons } = {}) => {
   buttons && buttons.forEach(b => b.onPress && b.onPress());
   return Promise.resolve();
@@ -28,7 +27,11 @@ export const activity = {
 };
 realActivity.setComponent(activity);
 
-//mock navigation
+// mock hardware back button android
+jest.setMock('BackHandler', require('react-native/Libraries/Utilities/__mocks__/BackHandler'));
+
+// mock navigation
+const realNavigation = require('./navigationUtils').default;
 let _params = {};
 export const navigation = {
   navigate: jest.fn(),
@@ -48,16 +51,16 @@ export const Alert = {
 };
 jest.setMock('Alert', Alert);
 
-//mock environment
+// mock environment
 const NativeModules = require.requireActual('react-native').NativeModules;
 NativeModules.AppConfig = {
   env: 'dev'
 };
 
-//mock timer
+// mock timer
 jest.useFakeTimers();
 
-//mock api response
+// mock api response
 export const mockResponse = mockClient.mockResponse;
 
 export const renderer = component => {

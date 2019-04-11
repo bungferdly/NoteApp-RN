@@ -1,6 +1,7 @@
 import React from 'react';
 import { ActivityIndicator, View, Alert, Text } from 'react-native';
 import styles from './styles';
+import navigation from '../../utils/navigationUtils';
 
 const types = {
   HIDDEN: 0,
@@ -35,6 +36,12 @@ export default class ActivityOverlay extends React.Component {
     this.setState({ viewState: {}, callback: null }, callback);
     return promise;
   };
+
+  componentDidUpdate(_, prevState) {
+    if ((this.state.viewState.type == types.OVERLAY) !== (prevState.viewState.type == types.OVERLAY)) {
+      navigation.setBackButtonEnabled(this.state.viewState.type != types.OVERLAY);
+    }
+  }
 
   render() {
     const { callback, viewState } = this.state;

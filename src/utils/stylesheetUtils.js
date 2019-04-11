@@ -42,7 +42,7 @@ function generateStyles(styleGenerator) {
   const ss = {};
   Object.keys(styleGenerator).forEach(k => {
     let s = styleGenerator[k];
-    while (true) {
+    while (s) {
       if (typeof s == 'string' && s[0] == '@') {
         const key = s.replace('@', '');
         s = _safeArea[key] || config.themes[_theme][key] || config.themes.default[key];

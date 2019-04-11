@@ -1,4 +1,4 @@
-const apiMiddleware = _ => next => action => {
+const apiMiddleware = () => next => action => {
   if (action.api) {
     return require('../utils/apiUtils').default.request(action);
   }

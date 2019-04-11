@@ -1,4 +1,5 @@
 import React from 'react';
+import { BackHandler } from 'react-native';
 import { renderer, Alert } from '../../../utils/testUtils';
 import ActivityOverlay from '../index';
 
@@ -47,4 +48,15 @@ test('alert', () => {
   ref.alert('NORMAL MESSAGE 2', {});
   jest.runAllTimers();
   expect(Alert.alert).toBeCalledTimes(2);
+});
+
+test('backHandler', () => {
+  ref.loading('STOP BACK BUTTON');
+  jest.runAllTimers();
+  BackHandler.mockPressBack();
+  expect(BackHandler.exitApp).not.toBeCalled();
+
+  ref.hide();
+  BackHandler.mockPressBack();
+  expect(BackHandler.exitApp).toBeCalled();
 });

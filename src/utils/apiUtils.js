@@ -13,13 +13,13 @@ const client = env.select({
       prod: 'https://production.url.com/api',
       default: Platform.select({
         ios: 'http://localhost:3000',
-        android: 'http://10.0.2.2:3000' //your pc ip address is 10.0.2.2 in android emulator
+        android: 'http://10.0.2.2:3000' // your pc ip address is 10.0.2.2 in android emulator
       })
     })
   })
 });
 
-// //show request in debugger
+// show request in debugger
 __DEV__ && (GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest);
 
 function getErrorMessage(err) {
