@@ -48,7 +48,8 @@ function generateStyles(styleGenerator) {
         s = _safeArea[key] || config.themes[_theme][key] || config.themes.default[key];
       } else if (typeof s == 'object' && s.waha) {
         const { waha, ...dims } = s;
-        s = dims[Object.keys(dims).find(k => _dimRgx.test(k))] || waha;
+        s = dims[Object.keys(dims).find(k => _dimRgx.test(k))];
+        s === undefined && (s = waha);
       } else {
         break;
       }
