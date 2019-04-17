@@ -78,7 +78,6 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint src --ext .js",
       "prettier --print-width 120 --single-quote --write",
       "git add"
     ]

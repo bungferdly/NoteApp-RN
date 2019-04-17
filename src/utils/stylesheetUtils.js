@@ -45,11 +45,10 @@ function generateStyles(styleGenerator) {
     while (s) {
       if (typeof s == 'string' && s[0] == '@') {
         const key = s.replace('@', '');
-        s = _safeArea[key] || config.themes[_theme][key] || config.themes.default[key];
-      } else if (typeof s == 'object' && s.waha) {
+        s = [_safeArea[key], config.themes[_theme][key], config.themes.default[key]].find(v => v !== undefined);
+      } else if (typeof s == 'object' && s.waha !== undefined) {
         const { waha, ...dims } = s;
-        s = dims[Object.keys(dims).find(k => _dimRgx.test(k))];
-        s === undefined && (s = waha);
+        s = [dims[Object.keys(dims).find(k => _dimRgx.test(k))], waha].find(v => v !== undefined);
       } else {
         break;
       }

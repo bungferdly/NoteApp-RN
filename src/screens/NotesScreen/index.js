@@ -36,7 +36,7 @@ function NotesScreen(props) {
 
   function renderItem({ item }) {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('NoteDetails', { id: item.id })}>
         <View style={styles.itemContainer}>
           <Text style={styles.itemTitle}>{item.title}</Text>
         </View>
@@ -53,6 +53,7 @@ function NotesScreen(props) {
       <ActivityView testID="ACTIVITY_VIEW" isLoading={isLoading} errorMessage={errorMessage} onReload={reloadData} />
     );
   }
+
   return (
     <FlatList
       testID="LIST"

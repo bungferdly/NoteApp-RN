@@ -2,6 +2,7 @@ const darkTheme = {
   BACKGROUND: '#111',
   TEXT: '#CCC',
   TINT: '#FFB951',
+  SV_INDICATOR: 'white',
   SB_STYLE: 'light-content',
   TF_BORDER: '#0F0F0F',
   TF_BACKGROUND: '#333',
