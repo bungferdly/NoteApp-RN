@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ScrollView, RefreshControl, View, Platform } from 'react-native';
+import { ScrollView, RefreshControl, View, Platform, FlatList } from 'react-native';
 import { ScreenContext } from '../Screen';
 import styles from './styles';
+
+function keyExtractor(_, key) {
+  return key.toString();
+}
 
 const ContentViewWithScroll = Component => props => {
   const { style, refreshing, onRefresh, children, ...remProps } = props;
@@ -13,23 +17,26 @@ const ContentViewWithScroll = Component => props => {
   useEffect(() => addEventListener('onHeaderHeight', setInset), []);
 
   function onScroll(e) {
-    sendEvent('onScroll', e, props);
+    sendEvent('onScroll', e);
   }
 
   function onScrollBeginDrag(e) {
-    sendEvent('onScrollBeginDrag', e, props);
+    sendEvent('onScrollBeginDrag', e);
   }
 
   function onScrollEndDrag(e) {
-    sendEvent('onScrollEndDrag', e, props);
+    sendEvent('onScrollEndDrag', e);
   }
 
   function onMomentumScrollEnd(e) {
-    sendEvent('onMomentumScrollEnd', e, props);
+    sendEvent('onMomentumScrollEnd', e);
   }
 
   return (
     <Component
+      keyExtractor={keyExtractor}
+      onEndReachedThreshold={0.1}
+      scrollEventThrottle={16}
       {...remProps}
       style={[styles.container, style, { marginTop: -inset }]}
       onScroll={onScroll}
@@ -41,7 +48,6 @@ const ContentViewWithScroll = Component => props => {
       onScrollBeginDrag={onScrollBeginDrag}
       onScrollEndDrag={onScrollEndDrag}
       onMomentumScrollEnd={onMomentumScrollEnd}
-      scrollEventThrottle={16}
       refreshControl={
         onRefresh && (
           <RefreshControl
@@ -60,3 +66,9 @@ const ContentViewWithScroll = Component => props => {
 };
 
 export const ContentScrollView = ContentViewWithScroll(ScrollView);
+export const ContentFlatList = ContentViewWithScroll(FlatList);
+
+export default function ContentView({ style, ...props }) {
+  styles.useLayout();
+  return <View style={[styles.container, style]} {...props} />;
+}

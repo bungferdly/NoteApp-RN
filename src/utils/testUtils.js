@@ -31,12 +31,13 @@ jest.setMock('BackHandler', require('react-native/Libraries/Utilities/__mocks__/
 
 // mock navigation
 const realNavigation = require('./navigationUtils').default;
-let _params = {};
+let _navState = { params: {} };
 export const navigation = {
   navigate: jest.fn(),
   goBack: jest.fn(),
-  setParams: params => (_params = params),
-  getParam: key => _params[key]
+  state: _navState,
+  setParams: params => (_navState.params = params),
+  getParam: key => _navState.params[key]
 };
 realNavigation.setNavigator({
   _navigation: navigation

@@ -13,6 +13,7 @@ const darkTheme = {
   CD_BORDER: '#0F0F0F',
   ER_BACKGROUND: '#333',
   ER_TEXT: '#BBB',
+  HD_SEARCHBG: '#333',
   HD_BACKGROUND: '#0E0E0E',
   HD_BORDER: '#000',
   HD_TEXT: '#AAA'

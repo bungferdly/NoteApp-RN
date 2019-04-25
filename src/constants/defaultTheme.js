@@ -25,6 +25,7 @@ const defaultTheme = {
   CD_BORDER: '#DDD',
   ER_BACKGROUND: '#EEE',
   ER_TEXT: '#999',
+  HD_SEARCHBG: '#DDD',
   HD_BACKGROUND: '#F9F9F9',
   HD_BORDER: '#DDD',
   HD_TEXT: '#222'

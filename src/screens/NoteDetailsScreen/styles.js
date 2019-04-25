@@ -1,21 +1,13 @@
 import StyleSheet from '../../utils/stylesheetUtils';
+import G from '../../constants/globalStyles';
 
 const styles = StyleSheet.create({
   contentContainer: {
-    marginTop: { waha: 90, wahs: 0 }
+    padding: 15,
+    marginBottom: '@SF_BOTTOM',
+    marginHorizontal: '@SF_LEFT'
   },
-  searchBar: {
-    paddingHorizontal: '@SF_LEFT',
-    paddingTop: 10,
-    paddingBottom: 15,
-    marginTop: -5
-  },
-  searchField: {
-    marginHorizontal: 15
-  },
-  icon: {
-    font: '@IC_FONT'
-  }
+  text: G.P
 });
 
 export default styles;

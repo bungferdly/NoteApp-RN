@@ -14,9 +14,7 @@ function Screen({ style, ...props }) {
       if (!listeners[key]) {
         listeners[key] = [];
       }
-      if (!listeners[key].includes(fn)) {
-        listeners[key].push(fn);
-      }
+      listeners[key].push(fn);
       return function removeEventListener() {
         const idx = listeners[key].indexOf(fn);
         ~idx && listeners[key].splice(idx, 1);

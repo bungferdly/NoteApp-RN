@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginHorizontal: '@SP_NORMAL',
     borderRadius: 50,
-    backgroundColor: '@TF_BACKGROUND',
+    backgroundColor: '@HD_SEARCHBG',
     marginBottom: { waha: 10, wahs: 3 }
   }
 });

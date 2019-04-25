@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useMemo, forwardRef, useImperativeHandle, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, TouchableOpacity, Text, Animated, Platform } from 'react-native';
 import { ScreenContext } from '../Screen';
 import styles from './styles';
 import Icon from '../Icon';
 
-function HeaderBar({ title, useBigTitle, autoHide, isSearching, onSearch, rights, navigation, bottom }) {
+function _HeaderBar({ title, bigTitle, autoHide, isSearching, onSearch, rights, onBack }) {
   styles.useLayout();
 
   const topHeight = styles.topHeight;
   const barHeight = styles.barHeight;
-  const bigHeight = title && useBigTitle ? styles.bigHeight : 0;
+  const bigHeight = title && bigTitle ? styles.bigHeight : 0;
   const searchHeight = onSearch ? styles.searchBarHeight : 0;
   const barAutoHide = autoHide === undefined ? styles.barHide : autoHide;
   const fontSizes = [styles.title.fontSize, bigHeight ? styles.titleBig.fontSize : styles.title.fontSize];
@@ -108,13 +108,6 @@ function HeaderBar({ title, useBigTitle, autoHide, isSearching, onSearch, rights
     outputRange: [0, 0, searchHeight, searchHeight]
   });
 
-  let index;
-  try {
-    index = Number(navigation.state.key.match(/\d+$/));
-  } catch {
-    index = 0;
-  }
-
   function sideOnLayout(e) {
     setSideWidth(Math.max(Math.ceil(e.nativeEvent.layout.width), sideWidth));
   }
@@ -130,8 +123,8 @@ function HeaderBar({ title, useBigTitle, autoHide, isSearching, onSearch, rights
         <View style={styles.barContainer}>
           <Animated.View style={[styles.bar, { marginTop: barTop }]}>
             <View style={[styles.left, { minWidth: sideWidth }]} onLayout={sideOnLayout}>
-              {index > 0 && (
-                <TouchableOpacity style={styles.button} onPress={navigation.goBack}>
+              {onBack && (
+                <TouchableOpacity style={styles.button} onPress={() => onBack()}>
                   <Icon style={styles.icon} name="arrow_back" />
                 </TouchableOpacity>
               )}
@@ -148,10 +141,10 @@ function HeaderBar({ title, useBigTitle, autoHide, isSearching, onSearch, rights
             </View>
             <View style={[styles.right, { minWidth: sideWidth }]} onLayout={sideOnLayout}>
               {rights &&
-                rights.map((b, i) => (
-                  <TouchableOpacity key={i} style={styles.button} onPress={b.onPress}>
-                    {!!b.icon && <Icon style={styles.icon} name={b.icon} />}
-                    {!!b.text && <Text style={styles.text}>{b.text}</Text>}
+                rights.map(({ icon, text, ...props }, i) => (
+                  <TouchableOpacity key={i} style={styles.button} {...props}>
+                    {!!icon && <Icon style={styles.icon} name={icon} />}
+                    {!!text && <Text style={styles.text}>{text}</Text>}
                   </TouchableOpacity>
                 ))}
             </View>
@@ -177,4 +170,6 @@ function HeaderBar({ title, useBigTitle, autoHide, isSearching, onSearch, rights
   );
 }
 
-export default React.memo(HeaderBar);
+const HeaderBar = React.memo(_HeaderBar);
+
+export default HeaderBar;

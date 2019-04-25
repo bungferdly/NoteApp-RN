@@ -1,21 +1,10 @@
 import StyleSheet from '../../utils/stylesheetUtils';
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '@HD_BACKGROUND',
-    borderBottomColor: '@HD_BORDER'
-  },
-  headerTitle: {
-    color: '@HD_TEXT'
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '@BACKGROUND'
-  },
   contentContainer: {
     paddingTop: 15,
-    paddingBottom: '@SF_BOTTOM',
-    paddingHorizontal: '@SF_LEFT'
+    marginBottom: '@SF_BOTTOM',
+    marginHorizontal: '@SF_LEFT'
   },
   itemContainer: {
     marginHorizontal: 15,
@@ -31,11 +20,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: '@FONT2',
     color: '@TEXT'
-  },
-  barButtonText: {
-    marginRight: 15,
-    fontWeight: 'bold',
-    color: '@BT_BACKGROUND'
   },
   footer: {
     margin: 20
