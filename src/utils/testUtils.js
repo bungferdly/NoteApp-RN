@@ -35,6 +35,7 @@ let _navState = { params: {} };
 export const navigation = {
   navigate: jest.fn(),
   goBack: jest.fn(),
+  reset: jest.fn(),
   state: _navState,
   setParams: params => (_navState.params = params),
   getParam: key => _navState.params[key]

@@ -9,6 +9,7 @@ import {
   Platform,
   TouchableWithoutFeedback
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import TextField from '../../components/TextField';
 import store from '../../utils/storeUtils';
 import { login } from '../../actions/accountActions';
@@ -30,7 +31,7 @@ function LoginScreen(props) {
 
   function doLogin() {
     dispatch(login({ username, password })).then(() => {
-      props.navigation.navigate('App');
+      props.navigation.reset([NavigationActions.navigate({ routeName: 'Home' })]);
     });
   }
 

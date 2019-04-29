@@ -2,10 +2,8 @@ import StyleSheet from '../../utils/stylesheetUtils';
 import G from '../../constants/globalStyles';
 
 const styles = StyleSheet.create({
-  contentContainer: {
-    padding: 15,
-    marginBottom: '@SF_BOTTOM',
-    marginHorizontal: '@SF_LEFT'
+  container: {
+    padding: 15
   },
   text: G.P
 });

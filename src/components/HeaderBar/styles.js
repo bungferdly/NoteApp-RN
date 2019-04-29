@@ -12,10 +12,16 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    backgroundColor: '@HD_BACKGROUND',
     paddingHorizontal: '@SF_LEFT',
+    borderBottomColor: '@HD_BORDER',
+    backgroundColor: '@HD_BACKGROUND',
     borderBottomWidth: 1,
-    borderBottomColor: '@HD_BORDER'
+    elevation: 2
+  },
+  bigBackground: {
+    backgroundColor: '@BACKGROUND',
+    borderBottomWidth: 0,
+    elevation: 0
   },
   barContainer: {
     marginTop: '@SF_TOP',

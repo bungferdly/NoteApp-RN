@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import store from '../../utils/storeUtils';
 import HeaderBar from '../../components/HeaderBar';
 import Screen from '../../components/Screen';
-import { ContentScrollView } from '../../components/ContentView';
+import ContentView from '../../components/ContentView';
 import styles from './styles';
 
 function NoteDetailsScreen(props) {
@@ -15,10 +15,10 @@ function NoteDetailsScreen(props) {
 
   return (
     <Screen>
-      <HeaderBar onBack={navigation.goBack} title="Note Details" />
-      <ContentScrollView contentContainerStyle={styles.contentContainer}>
+      <HeaderBar onBack={navigation.goBack} autoHide title="Note Details" />
+      <ContentView style={styles.container}>
         <Text style={styles.text}>{note.title}</Text>
-      </ContentScrollView>
+      </ContentView>
     </Screen>
   );
 }

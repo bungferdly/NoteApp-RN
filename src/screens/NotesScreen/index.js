@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import ActivityView from '../../components/ActivityView';
-import { ContentFlatList } from '../../components/ContentView';
+import ContentView from '../../components/ContentView';
 import store from '../../utils/storeUtils';
 import { getNotes, getNextNotes } from '../../actions/noteActions';
 import { logout } from '../../actions/accountActions';
@@ -21,7 +22,7 @@ function NotesScreen(props) {
 
   function doLogout() {
     dispatch(logout());
-    navigation.navigate('Login');
+    navigation.reset([NavigationActions.navigate({ routeName: 'Login' })]);
   }
 
   function reloadData() {
@@ -29,36 +30,33 @@ function NotesScreen(props) {
   }
 
   function requestNext() {
-    canLoadNext && dispatch(getNextNotes({ page: currentPage + 1 }));
+    dispatch(getNextNotes({ page: currentPage + 1 }));
   }
 
   function renderItem({ item, index }) {
     return (
       <TouchableOpacity testID={`ITEM_${index}`} onPress={() => navigation.navigate('NoteDetails', { id: item.id })}>
-        <View style={styles.itemContainer}>
+        <View style={[styles.itemContainer, styles[`itemContainer_${index}`]]}>
           <Text style={styles.itemTitle}>{item.title}</Text>
         </View>
       </TouchableOpacity>
     );
   }
 
-  function footer() {
-    return (isLoadingNext || canLoadNext) && <ActivityIndicator style={styles.footer} />;
-  }
-
   return (
     <Screen>
-      <HeaderBar title="Notes" bigTitle rights={[{ testID: 'LOGOUT_BTN', icon: 'log_out', onPress: doLogout }]} />
+      <HeaderBar bigTitle="Notes" rights={[{ testID: 'LOGOUT_BTN', icon: 'log_out', onPress: doLogout }]} />
       {data ? (
-        <ContentFlatList
+        <ContentView
           testID="LIST"
-          contentContainerStyle={styles.contentContainer}
+          style={styles.container}
           data={data}
           refreshing={isRefreshing}
           onRefresh={reloadData}
           renderItem={renderItem}
-          onEndReached={requestNext}
-          ListFooterComponent={footer}
+          canLoadNext={canLoadNext}
+          isLoadNext={isLoadingNext}
+          onLoadNext={requestNext}
         />
       ) : (
         <ActivityView testID="ACTIVITY_VIEW" isLoading={isLoading} errorMessage={errorMessage} onReload={reloadData} />

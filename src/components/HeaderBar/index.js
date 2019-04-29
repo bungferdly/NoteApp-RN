@@ -4,12 +4,12 @@ import { ScreenContext } from '../Screen';
 import styles from './styles';
 import Icon from '../Icon';
 
-function _HeaderBar({ title, bigTitle, autoHide, isSearching, onSearch, rights, onBack }) {
+function _HeaderBar({ title, bigTitle, autoHide, onSearch, rights, onBack }) {
   styles.useLayout();
 
   const topHeight = styles.topHeight;
   const barHeight = styles.barHeight;
-  const bigHeight = title && bigTitle ? styles.bigHeight : 0;
+  const bigHeight = bigTitle ? styles.bigHeight : 0;
   const searchHeight = onSearch ? styles.searchBarHeight : 0;
   const barAutoHide = autoHide === undefined ? styles.barHide : autoHide;
   const fontSizes = [styles.title.fontSize, bigHeight ? styles.titleBig.fontSize : styles.title.fontSize];
@@ -68,6 +68,38 @@ function _HeaderBar({ title, bigTitle, autoHide, isSearching, onSearch, rights, 
     })
   );
 
+  const bgColor = offset.interpolate({
+    inputRange: [barHeightD - 1, barHeightD, barHeightD + 1, barHeightD + 2],
+    outputRange: [
+      styles.background.backgroundColor,
+      styles.background.backgroundColor,
+      styles.bigBackground.backgroundColor,
+      styles.bigBackground.backgroundColor
+    ]
+  });
+
+  const bgBorder = offset.interpolate({
+    inputRange: [barHeightD - 1, barHeightD, barHeightD + 1, barHeightD + 2],
+    outputRange: [
+      styles.background.borderBottomWidth,
+      styles.background.borderBottomWidth,
+      styles.bigBackground.borderBottomWidth,
+      styles.bigBackground.borderBottomWidth
+    ]
+  });
+
+  const bgElevation = barAutoHide
+    ? 0
+    : offset.interpolate({
+        inputRange: [barHeightD - 2, barHeightD - 1, barHeightD, barHeightD + 1],
+        outputRange: [
+          styles.background.elevation,
+          styles.background.elevation,
+          styles.bigBackground.elevation,
+          styles.bigBackground.elevation
+        ]
+      });
+
   const barTop = barAutoHide
     ? offset.interpolate({
         inputRange: [0, topHeightD, barHeightD, barHeightD + 1],
@@ -119,7 +151,9 @@ function _HeaderBar({ title, bigTitle, autoHide, isSearching, onSearch, rights, 
   return (
     <>
       <View style={{ height: totalHeightD }} />
-      <View style={styles.background}>
+      <Animated.View
+        style={[styles.background, { backgroundColor: bgColor, borderBottomWidth: bgBorder, elevation: bgElevation }]}
+      >
         <View style={styles.barContainer}>
           <Animated.View style={[styles.bar, { marginTop: barTop }]}>
             <View style={[styles.left, { minWidth: sideWidth }]} onLayout={sideOnLayout}>
@@ -130,12 +164,12 @@ function _HeaderBar({ title, bigTitle, autoHide, isSearching, onSearch, rights, 
               )}
             </View>
             <View style={styles.mid}>
-              {!!title && (!bigHeight || !!textLeft) && (
+              {!!(bigTitle || title) && (!bigHeight || !!textLeft) && (
                 <Animated.Text
                   numberOfLines={1}
                   style={[styles.title, { left: titleLeft, top: titleTop, fontSize: titleSize }]}
                 >
-                  {title}
+                  {bigTitle || title}
                 </Animated.Text>
               )}
             </View>
@@ -155,7 +189,7 @@ function _HeaderBar({ title, bigTitle, autoHide, isSearching, onSearch, rights, 
               style={[styles.title, styles.titleBig, { marginHorizontal: sideWidth }]}
               onLayout={textOnLayout}
             >
-              {title}
+              {bigTitle || title}
             </Text>
           )}
           {!!bigHeight && <Animated.View style={{ marginTop: space }} />}
@@ -165,7 +199,7 @@ function _HeaderBar({ title, bigTitle, autoHide, isSearching, onSearch, rights, 
             </Animated.View>
           )}
         </View>
-      </View>
+      </Animated.View>
     </>
   );
 }

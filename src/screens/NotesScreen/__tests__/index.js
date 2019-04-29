@@ -21,7 +21,7 @@ test('reload', () => {
 });
 
 test('scroll to bottom', () => {
-  tree.do('LIST').onEndReached();
+  tree.do('LIST').onLoadNext();
   expect(tree.getProps('LIST').data.length).toEqual(20);
 });
 
@@ -37,5 +37,5 @@ test('press item', () => {
 
 test('logout', () => {
   tree.do('LOGOUT_BTN').onPress();
-  expect(navigation.navigate).toBeCalledWith('Login');
+  expect(navigation.reset).toBeCalledWith([{ routeName: 'Login', type: 'Navigation/NAVIGATE' }]);
 });

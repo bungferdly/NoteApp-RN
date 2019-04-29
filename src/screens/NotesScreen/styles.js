@@ -1,14 +1,12 @@
 import StyleSheet from '../../utils/stylesheetUtils';
 
 const styles = StyleSheet.create({
-  contentContainer: {
-    paddingTop: 15,
-    marginBottom: '@SF_BOTTOM',
-    marginHorizontal: '@SF_LEFT'
+  container: {
+    paddingVertical: 10
   },
   itemContainer: {
     marginHorizontal: 15,
-    marginBottom: 10,
+    marginVertical: 5,
     padding: 25,
     borderRadius: 4,
     borderWidth: 1,
@@ -20,9 +18,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: '@FONT2',
     color: '@TEXT'
-  },
-  footer: {
-    margin: 20
   }
 });
 
