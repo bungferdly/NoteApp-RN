@@ -1,13 +1,11 @@
 import axios from 'axios';
 import { Keyboard, Platform } from 'react-native';
-import { logout } from '../actions/accountActions';
-import store from './storeUtils';
-import env from './envUtils';
-import activity from './activityUtils';
-import navigation from './navigationUtils';
+import { logout } from '../../actions/accountActions';
+import env from '../envUtils';
+import activity from '../activityUtils';
 
 const client = env.select({
-  dev: __DEV__ && require('../apis/__mocks__/index').default,
+  dev: __DEV__ && require('../../apis/__mocks__/index').default,
   default: axios.create({
     baseURL: env.select({
       prod: 'https://production.url.com/api',
@@ -40,16 +38,20 @@ function getErrorMessage(err) {
   return errMsg || 'We encountered a problem.';
 }
 
-function request({ type, api, isRefreshing = false, loadingMessage, successMessage, showError, ...otherParams }) {
+const request = ({ type, api, isRefreshing = false, loadingMessage, successMessage, showError, ...otherParams }) => ({
+  getState,
+  dispatch,
+  navigation
+}) => {
   return new Promise(async (resolve, reject) => {
     if (loadingMessage) {
       Keyboard.dismiss();
       activity.loading(loadingMessage);
     }
-    const token = store.getState().account.accessToken;
+    const token = getState().account.accessToken;
     client.defaults.headers['x-access-token'] = token;
     if (type) {
-      store.dispatch({
+      dispatch({
         type,
         isLoading: true,
         isRefreshing,
@@ -66,13 +68,13 @@ function request({ type, api, isRefreshing = false, loadingMessage, successMessa
     if (loadingMessage) {
       activity.hide();
     }
-    if (token && !store.getState().account.accessToken) {
+    if (token && !getState().account.accessToken) {
       return reject('User logged out.');
     }
     const errorMessage = err && getErrorMessage(err);
     const { data, headers } = res || {};
     if (type) {
-      store.dispatch({
+      dispatch({
         type,
         isLoading: false,
         isRefreshing: false,
@@ -86,7 +88,7 @@ function request({ type, api, isRefreshing = false, loadingMessage, successMessa
     if (err) {
       if (err.response && err.response.status == 403) {
         const onPress = () => {
-          store.dispatch(logout());
+          dispatch(logout());
           navigation.navigate('Login');
         };
         if (token) {
@@ -113,7 +115,7 @@ function request({ type, api, isRefreshing = false, loadingMessage, successMessa
     }
     resolve(res);
   });
-}
+};
 
 const api = {
   request

@@ -1,36 +1,33 @@
 import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 import ActivityView from '../../components/ActivityView';
 import ContentView from '../../components/ContentView';
+import HeaderBar from '../../components/HeaderBar';
+import Screen from '../../components/Screen';
 import store from '../../utils/storeUtils';
 import { getNotes, getNextNotes } from '../../actions/noteActions';
 import { logout } from '../../actions/accountActions';
 import styles from './styles';
-import HeaderBar from '../../components/HeaderBar';
-import Screen from '../../components/Screen';
 
-function NotesScreen(props) {
-  const [noteState, dispatch] = store.useState(s => s.note);
+function NotesScreen({ navigation }) {
+  const noteState = store.useState(s => s.note);
   const { isLoading, errorMessage, isRefreshing, isLoadingNext, data, currentPage, canLoadNext } = noteState;
-  const { navigation } = props;
   styles.useLayout();
 
-  useEffect(() => {
-    dispatch(getNotes());
+  useEffect(function() {
+    store.dispatch(getNotes());
   }, []);
 
   function doLogout() {
-    dispatch(logout());
-    navigation.reset([NavigationActions.navigate({ routeName: 'Login' })]);
+    store.dispatch(logout());
   }
 
   function reloadData() {
-    dispatch(getNotes({ isRefreshing: true }));
+    store.dispatch(getNotes({ isRefreshing: true }));
   }
 
   function requestNext() {
-    dispatch(getNextNotes({ page: currentPage + 1 }));
+    store.dispatch(getNextNotes({ page: currentPage + 1 }));
   }
 
   function renderItem({ item, index }) {

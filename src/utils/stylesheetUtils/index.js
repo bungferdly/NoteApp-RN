@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Dimensions, Platform } from 'react-native';
-import config from '../constants/config';
-import store from './storeUtils';
+import config from '../../constants/config';
 
 let _dimRgx;
 let _window = {};
@@ -65,8 +64,9 @@ function create(styleGenerator) {
   const styles = {};
 
   styles.useLayout = function() {
+    const store = require('../storeUtils').default;
     const [window, setWindow] = useState(() => Dimensions.get('window'));
-    const [theme] = store.useState(s => s.theme.value);
+    const theme = store.useState(s => s.theme.value);
 
     useEffect(() => {
       const listener = ({ window }) => setWindow(window);

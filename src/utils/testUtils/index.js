@@ -1,7 +1,7 @@
 import React from 'react';
 import TestRenderer, { act } from 'react-test-renderer';
-import realActivity from './activityUtils';
-import mockClient from '../apis/__mocks__';
+import realActivity from '../activityUtils';
+import mockClient from '../../apis/__mocks__';
 
 // mock hooks
 React.useEffect = React.useLayoutEffect;
@@ -30,7 +30,7 @@ realActivity.setComponent(activity);
 jest.setMock('BackHandler', require('react-native/Libraries/Utilities/__mocks__/BackHandler'));
 
 // mock navigation
-const realNavigation = require('./navigationUtils').default;
+const realNavigation = require('../navigationUtils').default;
 let _navState = { params: {} };
 export const navigation = {
   navigate: jest.fn(),

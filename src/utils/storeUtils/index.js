@@ -4,11 +4,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import { isEqual } from 'lodash';
-import initialState from '../constants/initialState';
-import accountReducer from '../reducers/accountReducer';
-import noteReducer from '../reducers/noteReducer';
-import themeReducer from '../reducers/themeReducer';
-import apiMiddleware from '../middlewares/apiMiddleware';
+import initialState from '../../constants/initialState';
+import accountReducer from '../../reducers/accountReducer';
+import noteReducer from '../../reducers/noteReducer';
+import themeReducer from '../../reducers/themeReducer';
 
 const persistConfig = {
   key: 'root',
@@ -21,7 +20,18 @@ const reducers = combineReducers({
   theme: themeReducer
 });
 
-const middlewares = applyMiddleware(apiMiddleware);
+const myMiddleware = ({ dispatch, getState }) => next => action => {
+  if (typeof action === 'function') {
+    const navigation = require('../navigationUtils').default;
+    return action({ dispatch, getState, navigation });
+  } else if (action.api) {
+    const api = require('../apiUtils').default;
+    return dispatch(api.request(action));
+  }
+  return next(action);
+};
+
+const middlewares = applyMiddleware(myMiddleware);
 
 const store = createStore(persistReducer(persistConfig, reducers), initialState, composeWithDevTools(middlewares));
 
@@ -34,7 +44,7 @@ store.useState = function(mapState) {
     }
     return store.subscribe(listener);
   }, [state]);
-  return [state, store.dispatch];
+  return state;
 };
 
 export const persistor = persistStore(store);

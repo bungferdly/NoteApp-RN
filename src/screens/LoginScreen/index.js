@@ -9,30 +9,24 @@ import {
   Platform,
   TouchableWithoutFeedback
 } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 import TextField from '../../components/TextField';
-import store from '../../utils/storeUtils';
 import { login } from '../../actions/accountActions';
-import { setThemeValue } from '../../actions/themeActions';
+import { toggleTheme } from '../../actions/themeActions';
+import store from '../../utils/storeUtils';
 import styles from './styles';
 
-function LoginScreen(props) {
-  const [{ initialUsername, theme }, dispatch] = store.useState(s => ({
-    initialUsername: s.account.username,
-    theme: s.theme.value
-  }));
+function LoginScreen() {
+  const initialUsername = store.useState(s => s.account.username);
   const [username, setUsername] = useState(initialUsername || '');
   const [password, setPassword] = useState('');
   styles.useLayout();
 
-  function toggleTheme() {
-    dispatch(setThemeValue(theme == 'default' ? 'dark' : 'default'));
+  function doLogin() {
+    store.dispatch(login({ username, password }));
   }
 
-  function doLogin() {
-    dispatch(login({ username, password })).then(() => {
-      props.navigation.reset([NavigationActions.navigate({ routeName: 'Home' })]);
-    });
+  function doToggleTheme() {
+    store.dispatch(toggleTheme());
   }
 
   return (
@@ -64,7 +58,7 @@ function LoginScreen(props) {
           <TouchableOpacity testID="LOGIN_BTN" style={styles.button} onPress={doLogin}>
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
-          <TouchableOpacity testID="THEME_BTN" style={styles.button} onPress={toggleTheme}>
+          <TouchableOpacity testID="THEME_BTN" style={styles.button} onPress={doToggleTheme}>
             <Text style={styles.buttonText}>TOGGLE THEME</Text>
           </TouchableOpacity>
           <View style={styles.container} />
