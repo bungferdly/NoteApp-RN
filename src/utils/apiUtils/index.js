@@ -38,83 +38,82 @@ function getErrorMessage(err) {
   return errMsg || 'We encountered a problem.';
 }
 
-const request = ({ type, api, isRefreshing = false, loadingMessage, successMessage, showError, ...otherParams }) => ({
-  getState,
-  dispatch,
-  navigation
-}) => {
-  return new Promise(async (resolve, reject) => {
-    if (loadingMessage) {
-      Keyboard.dismiss();
-      activity.loading(loadingMessage);
-    }
-    const token = getState().account.accessToken;
-    client.defaults.headers['x-access-token'] = token;
-    if (type) {
-      dispatch({
-        type,
-        isLoading: true,
-        isRefreshing,
-        isSuccess: false,
-        ...otherParams
-      });
-    }
-    let res, err;
-    try {
-      res = await client.request(api);
-    } catch (error) {
-      err = error;
-    }
-    if (loadingMessage) {
-      activity.hide();
-    }
-    if (token && !getState().account.accessToken) {
-      return reject('User logged out.');
-    }
-    const errorMessage = err && getErrorMessage(err);
-    const { data, headers } = res || {};
-    if (type) {
-      dispatch({
-        type,
-        isLoading: false,
-        isRefreshing: false,
-        isSuccess: !!res,
-        headers,
-        data,
-        errorMessage,
-        ...otherParams
-      });
-    }
-    if (err) {
-      if (err.response && err.response.status == 403) {
-        const onPress = () => {
-          dispatch(logout());
-          navigation.navigate('Login');
-        };
-        if (token) {
-          await activity.error('Your session is expired, please relogin.', {
-            title: 'Session Expired',
-            buttons: [{ text: 'Relogin', style: 'cancel', onPress }],
-            cancelable: false
-          });
-        } else {
-          await activity.error('Login to access this app.', {
-            title: 'Login Required',
-            buttons: [{ text: 'Login', style: 'cancel', onPress }],
-            cancelable: false
-          });
-        }
-      } else if (showError) {
-        await activity.error(errorMessage);
+const request = ({
+  type,
+  api,
+  isRefreshing = false,
+  loadingMessage,
+  successMessage,
+  showError,
+  ...otherParams
+}) => async ({ getState, dispatch }) => {
+  if (loadingMessage) {
+    Keyboard.dismiss();
+    activity.loading(loadingMessage);
+  }
+  const token = getState().account.accessToken;
+  client.defaults.headers['x-access-token'] = token;
+  if (type) {
+    dispatch({
+      type,
+      isLoading: true,
+      isRefreshing,
+      isSuccess: false,
+      ...otherParams
+    });
+  }
+  let res, err;
+  try {
+    res = await client.request(api);
+  } catch (error) {
+    err = error;
+  }
+  if (loadingMessage) {
+    activity.hide();
+  }
+  if (token && !getState().account.accessToken) {
+    throw 'User logged out.';
+  }
+  const errorMessage = err && getErrorMessage(err);
+  const { data, headers } = res || {};
+  if (type) {
+    dispatch({
+      type,
+      isLoading: false,
+      isRefreshing: false,
+      isSuccess: !!res,
+      headers,
+      data,
+      errorMessage,
+      ...otherParams
+    });
+  }
+  if (err) {
+    if (err.response && err.response.status == 403) {
+      const onPress = () => dispatch(logout());
+      if (token) {
+        await activity.error('Your session is expired, please relogin.', {
+          title: 'Session Expired',
+          buttons: [{ text: 'Relogin', style: 'cancel', onPress }],
+          cancelable: false
+        });
+      } else {
+        await activity.error('Login to access this app.', {
+          title: 'Login Required',
+          buttons: [{ text: 'Login', style: 'cancel', onPress }],
+          cancelable: false
+        });
       }
-      return reject(errorMessage);
+    } else if (showError) {
+      await activity.error(errorMessage);
     }
+    throw errorMessage;
+  }
 
-    if (successMessage) {
-      await activity.success(successMessage);
-    }
-    resolve(res);
-  });
+  if (successMessage) {
+    await activity.success(successMessage);
+  }
+  return res;
 };
 
 const api = {

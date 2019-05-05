@@ -1,26 +1,27 @@
 import { BackHandler } from 'react-native';
 
-let navigator;
 let backButtonEnabled = 0;
+let tempActions = [];
 
-function setNavigator(navigatorRef) {
-  navigator = navigatorRef;
-  Object.keys(navigator._navigation).forEach(k => (navigation[k] = navigator._navigation[k]));
+function setNavigator(navigator) {
+  const nav = navigator._navigation;
+  Object.keys(nav).forEach(k => (navigation[k] = nav[k]));
   BackHandler.addEventListener('hardwareBackPress', () => backButtonEnabled < 0);
+  tempActions.forEach(([k, ...props]) => nav[k](...props));
+  tempActions = [];
 }
 
 function setBackButtonEnabled(enabled) {
   backButtonEnabled += enabled ? 1 : -1;
 }
 
-function reset(...props) {
-  setTimeout(() => navigation.reset(...props), 100);
-}
-
 const navigation = {
   setNavigator,
-  reset,
   setBackButtonEnabled
 };
+
+['reset', 'navigate'].forEach(k => {
+  navigation[k] = (...props) => tempActions.push([k, ...props]);
+});
 
 export default navigation;

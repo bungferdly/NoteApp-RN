@@ -4,14 +4,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import { isEqual } from 'lodash';
-import initialState from '../../constants/initialState';
+import initialState, { whitelist } from '../../constants/initialState';
 import accountReducer from '../../reducers/accountReducer';
 import noteReducer from '../../reducers/noteReducer';
 import themeReducer from '../../reducers/themeReducer';
 
 const persistConfig = {
   key: 'root',
-  storage: AsyncStorage
+  storage: AsyncStorage,
+  whitelist
 };
 
 const reducers = combineReducers({
