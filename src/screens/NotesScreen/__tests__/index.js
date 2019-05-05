@@ -1,9 +1,8 @@
 import React from 'react';
 import { renderer, mockResponse, navigation } from '../../../utils/testUtils';
-import NotesScreen, { navigationOptions } from '..';
+import NotesScreen from '..';
 
 const tree = renderer(<NotesScreen navigation={navigation} />);
-const headerRightTree = renderer(navigationOptions({ navigation }).headerRight);
 
 test('initial render', () => {
   expect(tree.getProps('ACTIVITY_VIEW').isLoading).toBeTruthy();
@@ -22,7 +21,7 @@ test('reload', () => {
 });
 
 test('scroll to bottom', () => {
-  tree.do('LIST').onEndReached();
+  tree.do('LIST').onLoadNext();
   expect(tree.getProps('LIST').data.length).toEqual(20);
 });
 
@@ -31,7 +30,12 @@ test('refreshing', () => {
   expect(tree.getProps('LIST').data.length).toEqual(10);
 });
 
+test('press item', () => {
+  tree.do('ITEM_0').onPress();
+  expect(navigation.navigate).toBeCalledWith('NoteDetails', { id: 23 });
+});
+
 test('logout', () => {
-  headerRightTree.do('LOGOUT_BTN').onPress();
-  expect(navigation.navigate).toBeCalledWith('Login');
+  tree.do('LOGOUT_BTN').onPress();
+  expect(navigation.reset).toBeCalledWith([{ routeName: 'Login', type: 'Navigation/NAVIGATE' }]);
 });

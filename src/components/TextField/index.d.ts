@@ -1,4 +1,6 @@
 import { ReactElement } from 'react';
 import { TextInputProps } from 'react-native';
 
-export default (props: TextInputProps) => ReactElement;
+const TextField: (props: TextInputProps) => ReactElement;
+
+export default TextField;

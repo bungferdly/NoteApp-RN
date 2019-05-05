@@ -7,6 +7,9 @@ const defaultTheme = {
   FW_LIGHT: '300',
   FW_BOLD: '700',
   FW_HEAVY: '900',
+  SP_SMALL: 8,
+  SP_NORMAL: 16,
+  SP_LARGE: 32,
   SB_BACKGROUND: '@HD_BACKGROUND',
   SB_STYLE: 'dark-content',
   BACKGROUND: '#FFF',
@@ -22,6 +25,7 @@ const defaultTheme = {
   CD_BORDER: '#DDD',
   ER_BACKGROUND: '#EEE',
   ER_TEXT: '#999',
+  HD_SEARCHBG: '#DDD',
   HD_BACKGROUND: '#F9F9F9',
   HD_BORDER: '#DDD',
   HD_TEXT: '#222'

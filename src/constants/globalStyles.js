@@ -4,6 +4,11 @@ const G = {
     fontFamily: '@FONT',
     fontWeight: '@FW_HEAVY',
     fontSize: 40
+  },
+  P: {
+    color: '@TEXT',
+    fontFamily: '@FONT',
+    fontSize: 16
   }
 };
 

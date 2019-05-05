@@ -10,7 +10,7 @@
     "@react-native-community/async-storage": "*",
     "axios": "*",
     "react": "16.8.3",
-    "react-native": "0.59.4",
+    "react-native": "0.59.5",
     "react-native-gesture-handler": "*",
     "react-navigation": "*",
     "redux": "*",
@@ -37,6 +37,9 @@
     "moduleNameMapper": {
       "^[@./a-zA-Z0-9$_-]+\\.(png|jpg)$": "RelativeImageStub"
     },
+    "transformIgnorePatterns": [
+      "node_modules/react-navigation"
+    ],
     "preset": "react-native",
     "clearMocks": true,
     "collectCoverage": true,
@@ -78,7 +81,6 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint src --ext .js",
       "prettier --print-width 120 --single-quote --write",
       "git add"
     ]

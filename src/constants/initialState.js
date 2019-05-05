@@ -17,4 +17,6 @@ const initialState = {
   }
 };
 
+export const whitelist = ['theme', 'account'];
+
 export default initialState;

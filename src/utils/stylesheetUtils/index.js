@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Dimensions, Platform } from 'react-native';
-import config from '../constants/config';
-import store from './storeUtils';
+import config from '../../constants/config';
 
 let _dimRgx;
 let _window = {};
@@ -45,11 +44,10 @@ function generateStyles(styleGenerator) {
     while (s) {
       if (typeof s == 'string' && s[0] == '@') {
         const key = s.replace('@', '');
-        s = _safeArea[key] || config.themes[_theme][key] || config.themes.default[key];
-      } else if (typeof s == 'object' && s.waha) {
+        s = [_safeArea[key], config.themes[_theme][key], config.themes.default[key]].find(v => v !== undefined);
+      } else if (typeof s == 'object' && s.waha !== undefined) {
         const { waha, ...dims } = s;
-        s = dims[Object.keys(dims).find(k => _dimRgx.test(k))];
-        s === undefined && (s = waha);
+        s = [dims[Object.keys(dims).find(k => _dimRgx.test(k))], waha].find(v => v !== undefined);
       } else {
         break;
       }
@@ -66,8 +64,9 @@ function create(styleGenerator) {
   const styles = {};
 
   styles.useLayout = function() {
+    const store = require('../storeUtils').default;
     const [window, setWindow] = useState(() => Dimensions.get('window'));
-    const [theme] = store.useState(s => s.theme.value);
+    const theme = store.useState(s => s.theme.value);
 
     useEffect(() => {
       const listener = ({ window }) => setWindow(window);
