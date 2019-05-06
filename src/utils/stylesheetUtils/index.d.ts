@@ -17,6 +17,6 @@ interface IStyleSheet {
   create<T>(styleGenerator: Styles<T>): Styles<T> | { useLayout: () => void };
 }
 
-const StyleSheet: IStyleSheet;
+declare const StyleSheet: IStyleSheet;
 
 export default StyleSheet;

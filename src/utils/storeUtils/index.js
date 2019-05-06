@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -21,20 +21,7 @@ const reducers = combineReducers({
   theme: themeReducer
 });
 
-const myMiddleware = ({ dispatch, getState }) => next => action => {
-  if (typeof action === 'function') {
-    const navigation = require('../navigationUtils').default;
-    return action({ dispatch, getState, navigation });
-  } else if (action.api) {
-    const api = require('../apiUtils').default;
-    return dispatch(api.request(action));
-  }
-  return next(action);
-};
-
-const middlewares = applyMiddleware(myMiddleware);
-
-const store = createStore(persistReducer(persistConfig, reducers), initialState, composeWithDevTools(middlewares));
+const store = createStore(persistReducer(persistConfig, reducers), initialState, composeWithDevTools());
 
 store.useState = function(mapState) {
   let [state, setState] = useState(() => mapState(store.getState()));

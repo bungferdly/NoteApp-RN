@@ -1,23 +1,16 @@
+import { Store } from 'redux';
 import initialState from '../../constants/initialState';
 
-interface ApiObject {
-  api: Object;
+interface IStore<S> extends Store<S> {
+  useState<M>(mapState: (state: S) => M): M;
 }
 
-type Dispatch = <D>(a: D) => D;
-type UseStateWith = <I>(i: I) => <T>(mapState: (state: I) => T) => T;
+type TStore = <S>(s: S) => IStore<S>;
 
-const useStateWith: UseStateWith;
-const useState = useStateWith(initialState);
-const getState = () => initialState;
-const dispatch: Dispatch;
+declare const storeWith: TStore;
 
-const store = {
-  useState,
-  getState,
-  dispatch
-};
+const store = storeWith(initialState);
 
-export const persistor: any;
+export declare const persistor: any;
 
 export default store;

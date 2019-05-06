@@ -22,11 +22,11 @@ function LoginScreen() {
   styles.useLayout();
 
   function doLogin() {
-    store.dispatch(login({ username, password }));
+    login({ username, password });
   }
 
   function doToggleTheme() {
-    store.dispatch(toggleTheme());
+    toggleTheme();
   }
 
   return (
