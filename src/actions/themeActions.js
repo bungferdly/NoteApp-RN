@@ -1,13 +1,13 @@
-export const themeActionTypes = {
-  SET_VALUE: 'theme/SET_VALUE'
+import store from '../utils/storeUtils';
+import actionTypes from '../constants/actionTypes';
+
+export const toggleTheme = () => {
+  const theme = store.getState().theme.value;
+  setThemeValue(theme == 'dark' ? 'default' : 'dark');
 };
 
-export const toggleTheme = () => ({ getState, dispatch }) => {
-  const theme = getState().theme.value;
-  dispatch(setThemeValue(theme == 'dark' ? 'default' : 'dark'));
-};
-
-export const setThemeValue = payload => ({
-  type: themeActionTypes.SET_VALUE,
-  payload
-});
+export const setThemeValue = payload =>
+  store.dispatch({
+    type: actionTypes.THEME_SETVALUE,
+    payload
+  });

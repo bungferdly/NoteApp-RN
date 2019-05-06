@@ -1,20 +1,20 @@
-import { accountActionTypes } from '../actions/accountActions';
 import initialState from '../constants/initialState';
+import actionTypes from '../constants/actionTypes';
 
-export default function accountReducer(state, action) {
+export default function accountReducer(state = initialState.account, action) {
   switch (action.type) {
-    case accountActionTypes.LOGIN:
+    case actionTypes.ACCOUNT_LOGIN:
       return {
         ...state,
         username: action.username,
         accessToken: action.isSuccess && action.data.accessToken
       };
-    case accountActionTypes.LOGOUT:
+    case actionTypes.ACCOUNT_LOGOUT:
       return {
         ...initialState,
         username: state.username
       };
     default:
-      return state || initialState.account;
+      return state;
   }
 }

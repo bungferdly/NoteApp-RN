@@ -1,14 +1,14 @@
-import { themeActionTypes } from '../actions/themeActions';
 import initialState from '../constants/initialState';
+import actionTypes from '../constants/actionTypes';
 
-export default function themeReducer(state, action) {
+export default function themeReducer(state = initialState.theme, action) {
   switch (action.type) {
-    case themeActionTypes.SET_VALUE:
+    case actionTypes.THEME_SETVALUE:
       return {
         ...state,
         value: action.payload
       };
     default:
-      return state || initialState.theme;
+      return state;
   }
 }

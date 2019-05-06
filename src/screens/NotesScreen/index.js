@@ -15,19 +15,19 @@ function NotesScreen({ navigation }) {
   styles.useLayout();
 
   useEffect(function() {
-    store.dispatch(getNotes());
+    getNotes();
   }, []);
 
   function doLogout() {
-    store.dispatch(logout());
+    logout();
   }
 
   function reloadData() {
-    store.dispatch(getNotes({ isRefreshing: true }));
+    getNotes({ isRefreshing: true });
   }
 
   function requestNext() {
-    store.dispatch(getNextNotes({ page: currentPage + 1 }));
+    getNextNotes({ page: currentPage + 1 });
   }
 
   function renderItem({ item, index }) {
