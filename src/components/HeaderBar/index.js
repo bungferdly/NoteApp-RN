@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, TouchableOpacity, Text, Animated, Platform } from 'react-native';
+import { View, TouchableOpacity, Text, Animated } from 'react-native';
 import { ScreenContext } from '../Screen';
 import styles from './styles';
 import Icon from '../Icon';
@@ -22,49 +22,23 @@ function _HeaderBar({ title, bigTitle, autoHide, onSearch, rights, onBack }) {
 
   const [sideWidth, setSideWidth] = useState(40);
   const [textLeft, setTextLeft] = useState(0);
-  const inset = Platform.select({ android: totalHeightD, ios: 0 });
-  const offset = new Animated.Value(totalHeightD);
   const { sendEvent, addEventListener } = useContext(ScreenContext);
 
-  offset.diff = 0;
+  const offset = new Animated.Value(totalHeightD);
+  const prev = { offset: 0, scrollOffset: 0 };
 
   useEffect(() => sendEvent('onHeaderHeight', totalHeightD));
 
   useEffect(() =>
-    addEventListener('onScrollBeginDrag', e => {
-      const y = -e.nativeEvent.contentOffset.y + inset;
-      offset.drag = true;
-      offset.diff = -offset._value + y;
-    })
-  );
-
-  useEffect(() =>
     addEventListener('onScroll', e => {
-      const y = -e.nativeEvent.contentOffset.y + inset;
-      let targetOffset = -offset.diff + y;
-      if (offset._value <= barHeightD && targetOffset > barHeightD && y < barHeightD) {
-        offset.diff = -offset._value + y;
+      const y = -e.nativeEvent.contentOffset.y;
+      if (y >= barHeightD) {
+        prev.offset = Math.min(y, totalHeightD);
       } else {
-        targetOffset = Math.min(totalHeightD, Math.max(topHeightD, targetOffset));
-        offset.setValue(targetOffset);
+        prev.offset = Math.min(Math.max(prev.offset + y - prev.scrollOffset, topHeightD), barHeightD);
       }
-    })
-  );
-
-  useEffect(() =>
-    addEventListener('onScrollEndDrag', e => {
-      const y = -offset.diff + (-e.nativeEvent.contentOffset.y + inset);
-      const h = [topHeightD, barHeightD, bigHeightD, searchHeightD].find(s => y - 10 < s);
-      Animated.timing(offset, { duration: 100, toValue: h == undefined ? totalHeightD : h }).start();
-      offset.drag = false;
-    })
-  );
-
-  useEffect(() =>
-    addEventListener('onMomentumScrollEnd', e => {
-      const y = -offset.diff + (-e.nativeEvent.contentOffset.y + inset);
-      const h = [topHeightD, barHeightD, bigHeightD, searchHeightD].find(s => y - 10 < s);
-      Animated.timing(offset, { duration: 100, toValue: h == undefined ? totalHeightD : h }).start();
+      prev.scrollOffset = y;
+      offset.setValue(prev.offset);
     })
   );
 
