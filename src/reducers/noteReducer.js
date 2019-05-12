@@ -1,10 +1,9 @@
-import { noteActionTypes } from '../actions/noteActions';
-import { accountActionTypes } from '../actions/accountActions';
 import initialState from '../constants/initialState';
+import actionTypes from '../constants/actionTypes';
 
-export default function noteReducer(state, action) {
+export default function noteReducer(state = initialState.note, action) {
   switch (action.type) {
-    case noteActionTypes.GET:
+    case actionTypes.NOTE_GET:
       return {
         ...state,
         data: action.data || state.data,
@@ -14,7 +13,7 @@ export default function noteReducer(state, action) {
         currentPage: 1,
         canLoadNext: action.isSuccess && action.data.length >= action.limit
       };
-    case noteActionTypes.GETNEXT:
+    case actionTypes.NOTE_GETNEXT:
       return {
         ...state,
         data: action.data ? [...state.data, ...action.data] : state.data,
@@ -22,9 +21,9 @@ export default function noteReducer(state, action) {
         isLoadingNext: action.isLoading,
         canLoadNext: action.isSuccess && action.data.length >= action.limit
       };
-    case accountActionTypes.LOGOUT:
-      return initialState;
+    case actionTypes.ACCOUNT_LOGOUT:
+      return initialState.note;
     default:
-      return state || initialState.note;
+      return state;
   }
 }

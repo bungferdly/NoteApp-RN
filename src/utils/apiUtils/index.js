@@ -38,7 +38,7 @@ function getErrorMessage(err) {
   return errMsg || 'We encountered a problem.';
 }
 
-const request = ({
+const request = async ({
   type,
   api,
   isRefreshing = false,
@@ -46,7 +46,8 @@ const request = ({
   successMessage,
   showError,
   ...otherParams
-}) => async ({ getState, dispatch }) => {
+}) => {
+  const { getState, dispatch } = require('../storeUtils').default;
   if (loadingMessage) {
     Keyboard.dismiss();
     activity.loading(loadingMessage);
