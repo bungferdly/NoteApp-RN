@@ -10,7 +10,7 @@
     "@react-native-community/async-storage": "*",
     "axios": "*",
     "react": "16.8.3",
-    "react-native": "0.59.5",
+    "react-native": "0.59.8",
     "react-native-gesture-handler": "*",
     "react-navigation": "*",
     "redux": "*",
@@ -24,7 +24,6 @@
     "babel-jest": "*",
     "eslint": "*",
     "eslint-plugin-react": "*",
-    "eslint-plugin-react-native": "*",
     "husky": "*",
     "jest": "*",
     "lint-staged": "*",
@@ -35,7 +34,7 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "^[@./a-zA-Z0-9$_-]+\\.(png|jpg)$": "RelativeImageStub"
+      ".(png|jpg)$": "RelativeImageStub"
     },
     "transformIgnorePatterns": [
       "node_modules/react-navigation"
@@ -44,35 +43,34 @@
     "clearMocks": true,
     "collectCoverage": true,
     "globals": {
-      "window": {},
       "GLOBAL": {}
     }
   },
   "eslintConfig": {
+    "plugins": [
+      "react"
+    ],
     "extends": [
       "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:react-native/all"
+      "plugin:react/recommended"
     ],
     "parser": "babel-eslint",
     "env": {
       "jest": true,
       "es6": true,
-      "node": true
+      "browser": true
     },
     "globals": {
       "__DEV__": false,
       "GLOBAL": {}
     },
     "rules": {
-      "react/prop-types": 0,
-      "react-native/no-color-literals": 0,
-      "react-native/sort-styles": 0,
-      "spaced-comment": [
-        "error",
-        "always"
-      ]
+      "react/prop-types": 0
     }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 120
   },
   "husky": {
     "hooks": {
@@ -81,7 +79,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --print-width 120 --single-quote --write",
+      "prettier --write",
       "git add"
     ]
   }
