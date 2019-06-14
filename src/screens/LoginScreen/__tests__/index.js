@@ -14,7 +14,7 @@ test('login success', () => {
   tree.do('USERNAME_INPUT').onChangeText('john');
   tree.do('PASSWORD_INPUT').onChangeText('1234');
   tree.do('LOGIN_BTN').onPress();
-  expect(navigation.reset).toBeCalledWith([{ routeName: 'Home', type: 'Navigation/NAVIGATE' }]);
+  expect(navigation.navigate).toBeCalledWith('Home');
 });
 
 test('change theme', () => {
