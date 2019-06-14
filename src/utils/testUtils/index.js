@@ -66,32 +66,26 @@ export const mockResponse = mockClient.mockResponse;
 
 export const renderer = component => {
   const tree = TestRenderer.create(component);
-  const getProps = testID => {
+  const get = testID => {
     try {
       return tree.root.findByProps({ testID }).props;
     } catch {
       return undefined;
     }
   };
-  const doo = testID => {
-    const newProps = {};
-    const props = getProps(testID);
-    Object.keys(props).forEach(k => {
-      if (typeof props[k] == 'function') {
-        newProps[k] = (...args) => {
-          run(() => props[k](...args));
-        };
-      }
-    });
-    return newProps;
-  };
-  const run = fn => {
+  const run = (id, prop = 'onPress', ...params) => {
     act(() => {
-      fn && fn();
+      if (typeof id == 'function') {
+        id();
+      } else if (typeof id == 'string') {
+        get(id)[prop](...params);
+      }
       jest.runAllTimers();
     });
+    jest.runAllTimers();
   };
-  return { getProps, do: doo, run };
+  const update = tree.update;
+  return { get, run, update };
 };
 
 afterEach(() => {

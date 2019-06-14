@@ -11,12 +11,12 @@ test('loading', () => {
   ref.loading('LOADING MESSAGE 2', {});
   jest.runAllTimers();
 
-  expect(tree.getProps('AI')).toBeTruthy();
-  expect(tree.getProps('MESSAGE').children).toEqual('LOADING MESSAGE 1');
+  expect(tree.get('AI')).toBeTruthy();
+  expect(tree.get('MESSAGE').children).toEqual('LOADING MESSAGE 1');
   ref.hide();
   jest.runAllTimers();
 
-  expect(tree.getProps('MESSAGE').children).toEqual('LOADING MESSAGE 2');
+  expect(tree.get('MESSAGE').children).toEqual('LOADING MESSAGE 2');
   ref.hide();
   jest.runAllTimers();
 });
@@ -24,12 +24,12 @@ test('loading', () => {
 test('success', () => {
   ref.success('SUCCESS MESSAGE 1');
   jest.runAllTimers();
-  expect(tree.getProps('MESSAGE')).toBeFalsy();
+  expect(tree.get('MESSAGE')).toBeFalsy();
 
   ref.success('SUCCESS MESSAGE 2', { duration: 0 });
   jest.runAllTimers();
-  expect(tree.getProps('ICON')).toBeTruthy();
-  expect(tree.getProps('MESSAGE').children).toEqual('SUCCESS MESSAGE 2');
+  expect(tree.get('ICON')).toBeTruthy();
+  expect(tree.get('MESSAGE').children).toEqual('SUCCESS MESSAGE 2');
   ref.hide();
   jest.runAllTimers();
 });
