@@ -10,7 +10,7 @@
     "@react-native-community/async-storage": "*",
     "axios": "*",
     "react": "16.8.3",
-    "react-native": "0.59.8",
+    "react-native": "0.59.9",
     "react-native-gesture-handler": "*",
     "react-navigation": "*",
     "redux": "*",
