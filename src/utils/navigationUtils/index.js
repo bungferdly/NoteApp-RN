@@ -1,13 +1,10 @@
 import { BackHandler } from 'react-native';
 
 let backButtonEnabled;
-let tempActions = [];
+let nav;
 
 function setNavigator(navigator) {
-  const nav = navigator._navigation;
-  Object.keys(nav).forEach(k => (navigation[k] = nav[k]));
-  tempActions.forEach(([k, ...props]) => nav[k](...props));
-  tempActions = [];
+  nav = nav || navigator._navigation;
 }
 
 function setBackButtonEnabled(enabled) {
@@ -18,13 +15,14 @@ function setBackButtonEnabled(enabled) {
   backButtonEnabled += enabled ? 1 : -1;
 }
 
+function navigate(...params) {
+  nav.navigate(...params);
+}
+
 const navigation = {
   setNavigator,
-  setBackButtonEnabled
+  setBackButtonEnabled,
+  navigate
 };
-
-['reset', 'navigate'].forEach(k => {
-  navigation[k] = (...props) => tempActions.push([k, ...props]);
-});
 
 export default navigation;

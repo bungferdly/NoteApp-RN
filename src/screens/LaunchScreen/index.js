@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import { resetTopScreen } from '../../actions/accountActions';
 
 function LaunchScreen() {
-  resetTopScreen();
+  useEffect(resetTopScreen);
   return null;
 }
 

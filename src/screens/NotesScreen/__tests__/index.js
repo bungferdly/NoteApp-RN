@@ -37,5 +37,5 @@ test('press item', () => {
 
 test('logout', () => {
   tree.do('LOGOUT_BTN').onPress();
-  expect(navigation.reset).toBeCalledWith([{ routeName: 'Login', type: 'Navigation/NAVIGATE' }]);
+  expect(navigation.navigate).toBeCalledWith('Login');
 });

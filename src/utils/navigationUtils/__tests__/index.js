@@ -1,8 +1,8 @@
 import navigation from '../';
 
-test('navigate before navigator set', () => {
-  navigation.navigate('SomeScreen');
+test('navigate', () => {
   const { navigation: mockNav } = require('../../testUtils');
+  navigation.navigate('SomeScreen');
   expect(mockNav.navigate).toBeCalledWith('SomeScreen');
 });
 
