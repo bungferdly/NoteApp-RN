@@ -2,6 +2,21 @@ import { useState, useEffect, useMemo } from 'react';
 import { Dimensions, Platform } from 'react-native';
 import themes from '../../constants/themes';
 
+let devices = Platform.select({
+  ios: [
+    { width: 320, height: 480, pTop: 20 }, //iPhone4,4s
+    { width: 320, height: 568, pTop: 20 }, //iPhone5,SE
+    { width: 375, height: 667, pTop: 20 }, //iPhone6,7,8
+    { width: 414, height: 736, pTop: 20 }, //iPhone6Plus,7Plus,8Plus
+    { width: 375, height: 812, pTop: 44, pBottom: 34, lLeft: 44, lRight: 44 }, //iPhoneX,Xs
+    { width: 414, height: 896, pTop: 44, pBottom: 34, lLeft: 44, lRight: 44 }, //iPhoneXMax,XsMax,XR
+    { width: 768, height: 1024, pTop: 24, lTop: 24 }, //iPad,Mini,Air, Pro9
+    { width: 834, height: 1112, pTop: 20, lTop: 20 }, //iPadPro10
+    { width: 1024, height: 1366, pTop: 24, lTop: 24 } //iPadPro12
+  ],
+  android: []
+});
+
 let _dimRgx;
 let _window = {};
 let _safeArea = {};
@@ -10,23 +25,19 @@ let _theme;
 function calculateStyles(styles, styleGenerator, window, theme) {
   if (_window.width != window.width || _window.height != window.height || _theme != theme) {
     const screen = Dimensions.get('screen');
-    const [height] = [screen.width, screen.height].sort((a, b) => b - a);
-    const isLandscape = Number(screen.width > screen.height);
-    let screenLevel = 0;
-    Platform.select({ ios: height > 0, android: false }) && screenLevel++;
-    Platform.select({ ios: height > 800, android: false }) && screenLevel++;
-    Platform.select({ ios: height > 1000, android: false }) && screenLevel++;
-    Platform.select({ ios: height > 1100, android: false }) && screenLevel++;
+    const [width, height] = [screen.width, screen.height].sort();
+    const prefix = Number(screen.width < screen.height) ? 'p' : 'l';
+    const device = devices.find(d => d.width == width && d.height == height) || {};
 
     _window = window;
 
     _theme = theme;
 
     _safeArea = {};
-    _safeArea.SF_LEFT = [[0, 0, 0, 0, 0], [0, 0, 44, 0, 0]][isLandscape][screenLevel];
-    _safeArea.SF_RIGHT = _safeArea.SF_LEFT;
-    _safeArea.SF_TOP = [[0, 20, 44, 20, 24], [0, 0, 0, 20, 24]][isLandscape][screenLevel];
-    _safeArea.SF_BOTTOM = [[0, 0, 34, 0, 20], [0, 0, 24, 0, 20]][isLandscape][screenLevel];
+    _safeArea.SF_TOP = device[prefix + 'Top'] || 0;
+    _safeArea.SF_LEFT = device[prefix + 'Left'] || 0;
+    _safeArea.SF_RIGHT = device[prefix + 'Right'] || 0;
+    _safeArea.SF_BOTTOM = device[prefix + 'Bottom'] || 0;
 
     const w = ['l', 'm', 's'][[750, 350, 0].findIndex(n => _window.width > n)];
     const h = ['l', 'm', 's'][[900, 600, 0].findIndex(n => _window.height > n)];

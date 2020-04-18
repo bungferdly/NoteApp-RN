@@ -33,12 +33,10 @@ function LoginScreen() {
     <KeyboardAvoidingView style={styles.container} behavior={Platform.select({ ios: 'padding', android: undefined })}>
       <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
         <View style={styles.contentContainer}>
-          <View style={styles.container} />
           <Image testID="LOGO" style={styles.logo} source={require('../../res/logo-app.png')} />
           <View>
             <Text style={styles.title}>Notes</Text>
           </View>
-          <View style={styles.container} />
           <TextField
             testID="USERNAME_INPUT"
             placeholder="username"
@@ -61,7 +59,6 @@ function LoginScreen() {
           <TouchableOpacity testID="THEME_BTN" style={styles.button} onPress={doToggleTheme}>
             <Text style={styles.buttonText}>TOGGLE THEME</Text>
           </TouchableOpacity>
-          <View style={styles.container} />
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

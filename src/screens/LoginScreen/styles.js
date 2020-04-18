@@ -4,10 +4,13 @@ import G from '../../constants/globalStyles';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '@BACKGROUND'
   },
   contentContainer: {
-    flex: 1,
+    width: '100%',
+    maxWidth: 640,
     paddingHorizontal: '@SF_LEFT'
   },
   logo: {
@@ -16,6 +19,7 @@ const styles = StyleSheet.create({
   },
   title: {
     ...G.H1,
+    marginBottom: 50,
     alignSelf: 'center'
   },
   textInput: {
